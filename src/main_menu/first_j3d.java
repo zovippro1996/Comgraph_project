@@ -191,7 +191,7 @@ public class first_j3d extends javax.swing.JFrame {
         setTitle("HelloUniverse");
         drawingPanel.setLayout(new java.awt.BorderLayout());
 
-        drawingPanel.setPreferredSize(new java.awt.Dimension(250, 250));
+        drawingPanel.setPreferredSize(new java.awt.Dimension(700, 500));
         getContentPane().add(drawingPanel, java.awt.BorderLayout.CENTER);
 
         pack();
