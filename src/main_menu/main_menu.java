@@ -71,11 +71,15 @@ public class main_menu extends JFrame implements ActionListener {
         pnlButton.add(credits_button);
         pnlButton.add(exit_button);
         
+<<<<<<< HEAD
+        add(pnlButton);      
+=======
         
         //Add Panel to the Main Menu
         add(pnlButton);
       
         //Make the Main Menu Appear
+>>>>>>> origin
         setVisible(true);
     }
     
