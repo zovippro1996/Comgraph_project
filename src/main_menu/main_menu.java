@@ -57,9 +57,7 @@ public class main_menu extends JFrame {
         pnlButton.add(credits_button);
         pnlButton.add(exit_button);
         
-        add(pnlButton);
-        // hihihih
-      
+        add(pnlButton);      
         setVisible(true);
     }
     
