@@ -78,21 +78,27 @@ public class main_menu extends JFrame implements ActionListener {
         //Make the Main Menu Appear
         setVisible(true);
     }
-
+    
+    
+    //Set action when receive command from Buttons
     @Override
     public void actionPerformed(ActionEvent e) {
         String action = e.getActionCommand();
+                //Action for Create Button
 	        if (action.equals("New")) {
 	            System.out.println("Not Support Yet");}
                 
+                //Action for Load Button
                 else if (action.equals("Load")) {
                     System.out.print("Not support yet");
                 }
                 
+                //Action for Credits Button
                 else if (action.equals("Credits")) {
                     System.out.print("A Dedicated Project from Computer Graphic Course by \n Pham Le Trung \n Le Van Tu");
                 }
                 
+                //Action for Exit Button
                 else if (action.equals("Exit")){
                     System.exit(0);
                 }
