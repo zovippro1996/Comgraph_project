@@ -16,6 +16,13 @@ import javax.swing.JList;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import com.sun.j3d.utils.geometry.Box;
+import com.sun.j3d.utils.universe.*;
+import com.sun.j3d.utils.geometry.Sphere;
+import com.sun.j3d.utils.image.TextureLoader;
+import javax.media.j3d.*;
+import javax.vecmath.*;
+import java.awt.GraphicsConfiguration;
 
 public class main_menu extends JFrame implements ActionListener {
     
@@ -86,7 +93,11 @@ public class main_menu extends JFrame implements ActionListener {
         String action = e.getActionCommand();
                 //Action for Create Button
 	        if (action.equals("New")) {
-	            System.out.println("Not Support Yet");}
+	            first_j3d J3D;
+		//Link to first_j3d	
+            J3D = new first_j3d();
+            J3D.setVisible(true);
+}
                 
                 //Action for Load Button
                 else if (action.equals("Load")) {
