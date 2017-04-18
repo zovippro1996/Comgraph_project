@@ -106,7 +106,9 @@ public class main_menu extends JFrame implements ActionListener {
                 
                 //Action for Credits Button
                 else if (action.equals("Credits")) {
-                    System.out.print("A Dedicated Project from Computer Graphic Course by \n Pham Le Trung \n Le Van Tu");
+                    credits credit_main = new credits();
+                    credit_main.setVisible(true);
+                    this.dispose();
                 }
                 
                 //Action for Exit Button
