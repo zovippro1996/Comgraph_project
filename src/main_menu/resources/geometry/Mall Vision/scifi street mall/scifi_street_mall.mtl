@@ -6,7 +6,7 @@ Ka 0 0 0
 Kd 1 1 1
 Ks 1 1 1
 Km 0
-map_Kd /home/zovippro1996/Desktop/CG_model/sgy532p13u-scifistreetmallscene/scifi street mall/Maps/sl1.jpg
+map_Kd sl1.jpg
 
 newmtl default_structure_area_sector1
 d 1
@@ -16,7 +16,7 @@ Ka 0 0 0
 Kd 1 1 1
 Ks 1 1 1
 Km 0
-map_Kd /home/zovippro1996/Desktop/CG_model/sgy532p13u-scifistreetmallscene/scifi street mall/Maps/sl1.jpg
+map_Kd sl1.jpg
 
 newmtl default_structure_area_sector1_1
 d 1
@@ -26,7 +26,7 @@ Ka 0 0 0
 Kd 1 1 1
 Ks 1 1 1
 Km 0
-map_Kd /home/zovippro1996/Desktop/CG_model/sgy532p13u-scifistreetmallscene/scifi street mall/Maps/sl1.jpg
+map_Kd sl1.jpg
 
 newmtl default
 d 1
@@ -45,7 +45,7 @@ Ka 0 0 0
 Kd 1 1 1
 Ks 1 1 1
 Km 0
-map_Kd /home/zovippro1996/Desktop/CG_model/sgy532p13u-scifistreetmallscene/scifi street mall/Maps/sl1.jpg
+map_Kd sl1.jpg
 
 newmtl default_sector_area
 d 1
@@ -55,7 +55,7 @@ Ka 1 1 1
 Kd 1 1 1
 Ks 1 1 1
 Km 0
-map_Kd /home/zovippro1996/Desktop/CG_model/sgy532p13u-scifistreetmallscene/scifi street mall/Maps/1267046936mens.jpg
+map_Kd 1267046936mens.jpg
 
 newmtl default_w2
 d 1
@@ -65,7 +65,7 @@ Ka 1 1 1
 Kd 1 1 1
 Ks 1 1 1
 Km 0
-map_Kd /home/zovippro1996/Desktop/CG_model/sgy532p13u-scifistreetmallscene/scifi street mall/Maps/fgn1.jpg
+map_Kd fgn1.jpg
 
 newmtl default_w3
 d 1
@@ -75,7 +75,7 @@ Ka 1 1 1
 Kd 1 1 1
 Ks 1 1 1
 Km 0
-map_Kd /home/zovippro1996/Desktop/CG_model/sgy532p13u-scifistreetmallscene/scifi street mall/Maps/tgb1.jpg
+map_Kd tgb1.jpg
 
 newmtl default_w4
 d 1
@@ -85,7 +85,7 @@ Ka 1 1 1
 Kd 1 1 1
 Ks 1 1 1
 Km 0
-map_Kd /home/zovippro1996/Desktop/CG_model/sgy532p13u-scifistreetmallscene/scifi street mall/Maps/v1.jpg
+map_Kd v1.jpg
 
 newmtl default_w5
 d 1
@@ -95,7 +95,7 @@ Ka 1 1 1
 Kd 1 1 1
 Ks 1 1 1
 Km 0
-map_Kd /home/zovippro1996/Desktop/CG_model/sgy532p13u-scifistreetmallscene/scifi street mall/Maps/rbh2.jpg
+map_Kd rbh2.jpg
 
 newmtl default_w6
 d 1
@@ -105,7 +105,7 @@ Ka 1 1 1
 Kd 1 1 1
 Ks 1 1 1
 Km 0
-map_Kd /home/zovippro1996/Desktop/CG_model/sgy532p13u-scifistreetmallscene/scifi street mall/Maps/gb1.jpg
+map_Kd gb1.jpg
 
 newmtl default_w7
 d 1
