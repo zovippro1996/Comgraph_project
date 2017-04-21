@@ -8,7 +8,6 @@ package main_menu;
 //Imports are listed in full to show what's being used
 //could just import javax.swing.* and java.awt.* etc..
 import javax.swing.*;
-import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import com.sun.j3d.utils.geometry.Box;
@@ -35,7 +34,7 @@ public class main_menu extends JFrame implements ActionListener {
     public static void main(String[] args) {
 
         //Call out the main_menu Constructor
-        new main_menu();
+        main_menu main_1 = new main_menu();
     }
 
     public main_menu() {
