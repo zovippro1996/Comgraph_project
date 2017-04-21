@@ -7,12 +7,7 @@ package main_menu;
 
 //Imports are listed in full to show what's being used
 //could just import javax.swing.* and java.awt.* etc..
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JList;
+import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -26,13 +21,17 @@ import javax.media.j3d.*;
 import javax.vecmath.*;
 import java.awt.GraphicsConfiguration;
 import java.net.URL;
-import javax.swing.ImageIcon;
 
 public class main_menu extends JFrame implements ActionListener {
 
-    //Note: Typically the main method will be in a
-    //separate class. As this is a simple one class
-    //example it's all in the one class.
+    JPanel pnlButton = new JPanel();
+
+    //Attribute as 4 Button
+    JButton create_button = new JButton("Create Project");
+    JButton load_button = new JButton("Load Project");
+    JButton credits_button = new JButton("Credits");
+    JButton exit_button = new JButton("Exit");
+
     public static void main(String[] args) {
 
         //Call out the main_menu Constructor
@@ -46,8 +45,6 @@ public class main_menu extends JFrame implements ActionListener {
         setTitle("Main Menu");
         setSize(1366, 768);
 
-        JPanel pnlButton = new JPanel();
-
         //This will center the JFrame in the middle of the screen
         setLocationRelativeTo(null);
 
@@ -60,25 +57,21 @@ public class main_menu extends JFrame implements ActionListener {
         background.setBounds(0, 0, 1366, 768);
 
         //Add Create Project Button to the Main Menu
-        JButton create_button = new JButton("Create Project");
         create_button.addActionListener(this);
-        create_button.setActionCommand("New");
+        create_button.setActionCommand("Create");
         create_button.setBounds(583, 200, 200, 50);
 
         //Add Load Button to the Main Mennu
-        JButton load_button = new JButton("Load Project");
         load_button.addActionListener(this);
         load_button.setActionCommand("Load");
         load_button.setBounds(583, 300, 200, 50);
 
         //Add Credit Button to the Main Menu
-        JButton credits_button = new JButton("Credits");
         credits_button.addActionListener(this);
         credits_button.setActionCommand("Credits");
         credits_button.setBounds(583, 400, 200, 50);
 
         //Initialize Exit Button
-        JButton exit_button = new JButton("Exit");
         exit_button.addActionListener(this);
         exit_button.setActionCommand("Exit");
         exit_button.setBounds(583, 500, 200, 50);
@@ -88,6 +81,8 @@ public class main_menu extends JFrame implements ActionListener {
         pnlButton.add(load_button);
         pnlButton.add(credits_button);
         pnlButton.add(exit_button);
+
+        //Add Background
         pnlButton.add(background);
         //Add Panel to the Main Menu
         add(pnlButton);
@@ -102,12 +97,18 @@ public class main_menu extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String action = e.getActionCommand();
         //Action for Create Button
-        if (action.equals("New")) {
-            first_j3d J3D;
-            //Link to first_j3d	
-            J3D = new first_j3d();
-            J3D.setVisible(true);
-            this.dispose();
+        if (action.equals("Create")) {
+
+            //Hidden all Butotn as click create
+            create_button.setVisible(false);
+            load_button.setVisible(false);
+            credits_button.setVisible(false);
+            exit_button.setVisible(false);
+            
+            Ground_initialize_frame ground_init = new Ground_initialize_frame();
+            ground_init.setVisible(true);
+            
+
         } //Action for Load Button
         else if (action.equals("Load")) {
             System.out.print("Not support yet");
