@@ -48,6 +48,9 @@
         <Property name="dialogTitle" type="java.lang.String" value=""/>
         <Property name="fileSelectionMode" type="int" value="2"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFileChooser1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
