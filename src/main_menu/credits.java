@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 public class credits extends JFrame implements ActionListener {
 
     public credits() {
+        setResizable(false);
         JPanel pnlButton = new JPanel();
 
         //make sure the program exits when the frame closes

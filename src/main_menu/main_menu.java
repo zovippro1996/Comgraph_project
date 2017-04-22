@@ -35,6 +35,7 @@ public class main_menu extends JFrame implements ActionListener {
 
         //Call out the main_menu Constructor
         main_menu main_1 = new main_menu();
+        main_1.setResizable(false);
     }
 
     public main_menu() {
@@ -98,24 +99,21 @@ public class main_menu extends JFrame implements ActionListener {
         //Action for Create Button
         if (action.equals("Create")) {
 
-            //Hidden all Butotn as click create
-            create_button.setVisible(false);
-            load_button.setVisible(false);
-            credits_button.setVisible(false);
-            exit_button.setVisible(false);
-            
-            Ground_initialize_frame ground_init = new Ground_initialize_frame();
+            Ground_init_dialog ground_init = new Ground_init_dialog(this,true);
             ground_init.setVisible(true);
-            
+               
 
         } //Action for Load Button
         else if (action.equals("Load")) {
-            System.out.print("Not support yet");
+            Load_project_dialog load_project1 = new Load_project_dialog(this,true);
+            load_project1.setVisible(true);
+
         } //Action for Credits Button
         else if (action.equals("Credits")) {
             credits credit_main = new credits();
             credit_main.setVisible(true);
             this.dispose();
+
         } //Action for Exit Button
         else if (action.equals("Exit")) {
             System.exit(0);
