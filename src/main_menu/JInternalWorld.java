@@ -12,7 +12,7 @@
  *
  * - Redistribution in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in
- *   the documentation and/or other materials provided with the
+ *   the  documentation and/or other materials provided with the
  *   distribution.
  *
  * Neither the name of Sun Microsystems, Inc. or the names of
@@ -49,6 +49,8 @@ import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 
 import java.awt.BorderLayout;
+import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 
@@ -58,10 +60,13 @@ import javax.media.j3d.Appearance;
 import javax.media.j3d.Background;
 import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.BranchGroup;
+import javax.media.j3d.Canvas3D;
 import javax.media.j3d.DirectionalLight;
 import javax.media.j3d.GraphicsConfigTemplate3D;
 import javax.media.j3d.Group;
+import javax.media.j3d.PointLight;
 import javax.media.j3d.RotationInterpolator;
+import javax.media.j3d.Shape3D;
 import javax.media.j3d.Transform3D;
 import javax.media.j3d.TransformGroup;
 
@@ -69,6 +74,7 @@ import javax.swing.JInternalFrame;
 import javax.vecmath.Color3f;
 
 import javax.vecmath.Point3d;
+import javax.vecmath.Point3f;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
 
@@ -84,7 +90,8 @@ import javax.vecmath.Vector3f;
  */
 public class JInternalWorld extends JInternalFrame {
     /** DOCUMENT ME! */
-    int shapeIsSelected;
+    Shape3D shapeIsSelected;
+    Shape3D []shapeList;
     private Component comp;
     private Group content1 = null;
 
@@ -100,12 +107,9 @@ public class JInternalWorld extends JInternalFrame {
         super();
         setSize(256, 256);
         setClosable(true);
-        shapeIsSelected = 0;
 
-        JCanvas3D canvas = new JCanvas3D(new GraphicsConfigTemplate3D());
-        if (true == isDelayed) {
-            canvas.setResizeMode(JCanvas3D.RESIZE_DELAYED);
-        }
+        Canvas3D canvas = new Canvas3D(SimpleUniverse.getPreferredConfiguration());
+        
         comp = canvas;
 
         Dimension dim = new Dimension(256, 256);
@@ -116,8 +120,8 @@ public class JInternalWorld extends JInternalFrame {
         pack();
 
         // Create a simple scene and attach it to the virtual universe
-        BranchGroup scene = createSceneGraph(isInteractive, isRandom);
-        SimpleUniverse universe = new SimpleUniverse(canvas.getOffscreenCanvas3D()); //TODO: this is awful and must not be done like that in final version
+        SimpleUniverse universe = new SimpleUniverse(canvas); //TODO: this is awful and must not be done like that in final version
+        BranchGroup scene = createSceneGraph(isInteractive, isRandom,canvas);
 
         // This will move the ViewPlatform back a bit so the
         // objects in the scene can be viewed.
@@ -134,7 +138,10 @@ public class JInternalWorld extends JInternalFrame {
      *
      * @return a global branchgroup containing the world, as desired.
      */
-    private BranchGroup createSceneGraph(boolean isInteractive, boolean isRandom) {
+    private BranchGroup createSceneGraph(boolean isInteractive, boolean isRandom){
+       return createSceneGraph(isInteractive,isRandom,null);
+    }
+    private BranchGroup createSceneGraph(boolean isInteractive, boolean isRandom, Canvas3D c) {
         // Create the root of the branch graph
         BranchGroup objRoot = new BranchGroup();
 
@@ -158,10 +165,10 @@ public class JInternalWorld extends JInternalFrame {
         
         
         Group sh = new SphereGroup();
-	
-
         
-        objRot.addChild( sh );
+       
+       // ((SphereGroup) sh).trans.removeAllChildren();        
+        objRot.addChild(sh);
 
         BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0),
                 100.0);
@@ -186,10 +193,10 @@ public class JInternalWorld extends JInternalFrame {
 	light1.setInfluencingBounds(bounds);
 	objRoot.addChild(light1);
 	
-	DirectionalLight light2
-	    = new DirectionalLight(light2Color, light2Direction);
-	light2.setInfluencingBounds(bounds);
-	objRoot.addChild(light2);
+//	DirectionalLight light2
+//	    = new DirectionalLight(light2Color, light2Direction);
+//	light2.setInfluencingBounds(bounds);
+//	objRoot.addChild(light2);
 
 
         if (true == isInteractive) {
@@ -221,7 +228,14 @@ public class JInternalWorld extends JInternalFrame {
             rotator.setSchedulingBounds(bounds);             
             objRoot.addChild(rotator);
         }
-
+        
+//        PointLight ptlight = new PointLight(new Color3f(Color.LIGHT_GRAY),
+//        new Point3f(3f,3f,3f), new Point3f(1f,0f,0f));
+//        ptlight.setInfluencingBounds(bounds);
+//        objRoot.addChild(ptlight);
+        
+        PickHighlightBehavior pickBeh = new 
+	  PickHighlightBehavior(c, objRoot, bounds);
         return objRoot;
     }
 

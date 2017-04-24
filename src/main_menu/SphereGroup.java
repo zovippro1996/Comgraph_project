@@ -44,9 +44,14 @@
 
 package main_menu;
 
+import com.sun.j3d.loaders.IncorrectFormatException;
+import com.sun.j3d.loaders.ParsingErrorException;
+import com.sun.j3d.loaders.Scene;
+import com.sun.j3d.loaders.objectfile.ObjectFile;
 import javax.media.j3d.*;
 import javax.vecmath.*;
 import com.sun.j3d.utils.geometry.*;
+import java.io.FileNotFoundException;
 
 public class SphereGroup
 	extends Group
@@ -90,34 +95,58 @@ public class SphereGroup
 
 	double xStart = -xSpacing * (double)(xCount-1) / 2.0;
 	double yStart = -ySpacing * (double)(yCount-1) / 2.0;
-
-	Shape3D sphere = null;
-	TransformGroup trans = null;
-	Transform3D t3d = new Transform3D( );
-	Vector3d vec = new Vector3d( );
 	double x, z = yStart, y = 0.0;
 	shapes = new Shape3D[xCount * yCount];
 	for ( int i = 0; i < yCount; i++ )
 	    {
 		x = xStart;
-		for ( int j = 0; j < xCount; j++ ) {
-		    vec.set( x, y, z );
-		    t3d.setTranslation( vec );
-		    trans = new TransformGroup( t3d );
-		    addChild( trans );
-
-		    sphere = new Shape3D(createGeometry(), app);      // it's appearance
-		    trans.addChild( sphere );
+		for ( int j = 0; j < xCount; j++ ) {  
+                    Area area = new Area(createGeometry(), app); 
+              
+//        int flags = ObjectFile.RESIZE;
+//	flags |= ObjectFile.TRIANGULATE;
+//        flags |= ObjectFile.STRIPIFY;   
+//        ObjectFile f = new ObjectFile(flags, 
+//	(float)(1.0 * Math.PI / 180.0));
+//        Scene s = null;
+//	try {
+//          System.out.print(Resources.getResource("resources/geometry/Thecity/TheCity.obj"));  
+//	  s = f.load(Resources.getResource("resources/geometry/Thecity/TheCity.obj"));
+//	}
+//	catch (FileNotFoundException e) {
+//	  System.err.println(e);
+//	  System.exit(1);
+//	}
+//	catch (ParsingErrorException e) {
+//	  System.err.println(e);
+//	  System.exit(1);
+//	}
+//	catch (IncorrectFormatException e) {
+//	  System.err.println(e);
+//	  System.exit(1);
+//	}
+//	  
+//
+//                    
+//                    
+                    
+		    area.vec.set( x, y, z );
+		    area.t3d.setTranslation( area.vec );
+		    area.trans = new TransformGroup( area.t3d );
+                    
+		    addChild( area.trans );
+                    area.setName("Area " + Integer.toString(i) +", "+ Integer.toString(j));
+		    area.trans.addChild( area);
 		    x += xSpacing;
-		    shapes[numShapes] = sphere;
+		    shapes[numShapes] = area;
 		    if (overrideflag) 
-			shapes[numShapes].setCapability(Shape3D.ALLOW_APPEARANCE_OVERRIDE_WRITE);
-		    numShapes++;
+			shapes[numShapes].setCapability(Shape3D.ALLOW_APPEARANCE_OVERRIDE_WRITE);                    
+		    numShapes++;                 
 		}
 		z += ySpacing;
 	    }
     }
-    private Shape3D getSelected(){
+    public Shape3D getSelected(){
         return getShape(shapeIsSelected);
     }
     private Shape3D getShape(int index){
@@ -135,7 +164,7 @@ public class SphereGroup
  for (int j = 0; j < n; j++) {
  float x = (i - m/2)*0.2f;
  float z = (j - n/2)*0.2f;
- float y = 0.2f * (float)(Math.cos(x) * Math.sin(z))/
+ float y = 0.1f * (float)(Math.cos(x) * Math.sin(z))/
  ((float)Math.exp(0.25*(x*x+z*z)))-1.0f;
  pts[idx++] = new Point3f(x, y, z);
  }
