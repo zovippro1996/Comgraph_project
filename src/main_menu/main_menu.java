@@ -100,7 +100,9 @@ public class main_menu extends JFrame implements ActionListener {
         if (action.equals("Create")) {
 
             Ground_init_dialog ground_init = new Ground_init_dialog(this,true);
-            ground_init.setVisible(true);
+            ground_init.setVisible(true);     
+           
+
                
 
         } //Action for Load Button

@@ -5,6 +5,8 @@
  */
 package main_menu;
 
+import java.awt.event.*;
+
 /**
  *
  * @author zovippro1996
@@ -37,9 +39,9 @@ public class Ground_init_dialog extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        Width_TextPanel = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
+        Height_TextPanel = new javax.swing.JTextPane();
         jCheckBox1 = new javax.swing.JCheckBox();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
@@ -53,9 +55,9 @@ public class Ground_init_dialog extends javax.swing.JDialog {
 
         jLabel3.setText("Height");
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(Width_TextPanel);
 
-        jScrollPane2.setViewportView(jTextPane2);
+        jScrollPane2.setViewportView(Height_TextPanel);
 
         jCheckBox1.setText("Built-in");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +66,8 @@ public class Ground_init_dialog extends javax.swing.JDialog {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5x5", "10x10", "25x20", "50x50" }));
+        jComboBox1.setEnabled(false);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -72,6 +75,11 @@ public class Ground_init_dialog extends javax.swing.JDialog {
         });
 
         jButton1.setText("Proceed");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -146,18 +154,35 @@ public class Ground_init_dialog extends javax.swing.JDialog {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
         if (jCheckBox1.isSelected()) {
-            jTextPane1.setEditable(false);
-            jTextPane2.setEditable(false);
+            Width_TextPanel.setEditable(false);
+            Height_TextPanel.setEditable(false);
+            jComboBox1.setEnabled(true);
+            
         } else {
-            jTextPane1.setEditable(true);
-            jTextPane2.setEditable(true);
+            Width_TextPanel.setEditable(true);
+            Height_TextPanel.setEditable(true);
+            jComboBox1.setEnabled(false);
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        App new_app1 = new App();
+        
+        new_app1.setVisible(true);
+        
+        //Cannot Call Initial Ground
+        
+        new_app1.jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt);
+        
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,6 +227,8 @@ public class Ground_init_dialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextPane Height_TextPanel;
+    private javax.swing.JTextPane Width_TextPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
@@ -211,7 +238,5 @@ public class Ground_init_dialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane2;
     // End of variables declaration//GEN-END:variables
 }
