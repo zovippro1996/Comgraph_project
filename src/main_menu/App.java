@@ -224,6 +224,22 @@ public class App extends javax.swing.JFrame {
             new App().setVisible(true);
         });
     }
+    
+    //Trung's set Constructor
+    public void auto_open_JInternalWorld() {                                           
+        // TODO add your handling code here:
+        
+                JInternalWorld iWorld;
+        // we create an internal world to be added within the JDesktop.
+        iWorld = new JInternalWorld( true,true,true );
+        iWorld.setSize(DestopPn.getSize());
+        iWorld.setLocation( 0, 0 );
+        iWorld.setResizable( true );
+       
+        DestopPn.add( iWorld );
+        iWorld.setVisible(true);
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DestopPn;

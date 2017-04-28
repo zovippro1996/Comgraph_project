@@ -177,11 +177,11 @@ public class Ground_init_dialog extends javax.swing.JDialog {
         
         new_app1.setVisible(true);
         
-        //Cannot Call Initial Ground
-        
-        new_app1.jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt);
+       //Need passing variables
+        new_app1.auto_open_JInternalWorld();
         
         this.dispose();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -226,6 +226,14 @@ public class Ground_init_dialog extends javax.swing.JDialog {
         });
     }
 
+    public boolean isProceed()
+    {
+        if (jButton1.isEnabled())
+            return true;
+        else        
+        return false;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane Height_TextPanel;
     private javax.swing.JTextPane Width_TextPanel;
