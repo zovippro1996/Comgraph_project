@@ -177,11 +177,15 @@ public class Ground_init_dialog extends javax.swing.JDialog {
         
         new_app1.setVisible(true);
         
+        //Get Input from 2 TextPanels
+        int init_width =  Integer.parseInt(Width_TextPanel.getText()); 
+        int init_height = Integer.parseInt(Width_TextPanel.getText()); 
+        
        //Need passing variables
         new_app1.auto_open_JInternalWorld();
         
+        //Close the JDialog
         this.dispose();
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -226,6 +230,7 @@ public class Ground_init_dialog extends javax.swing.JDialog {
         });
     }
 
+    //Send Close signal to parent JFrame
     public boolean isProceed()
     {
         if (jButton1.isEnabled())
