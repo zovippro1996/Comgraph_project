@@ -16,15 +16,24 @@ import java.util.Scanner;
  */
 public class File_associate {
 
-    private int n;
-    private int[][] building_matrix = new int[n][5];
+    //Project Object Attribute
+    int n;
+    int[][] building_matrix = new int[n][5];
 
-    File file = new File("tmp/save project/tmp.txt");
+    File file;
+
+    //Constructor
+    public File_associate(int n, int[][] building_matrix, String filepath) {
+
+        this.n = n;
+        this.building_matrix = building_matrix;
+        this.file = new File(filepath);
+    }
 
     //Save Project function
-    public void save_project() {
+    public void save_project(String filepath) {
         try {
-
+            this.file = new File(filepath);
             PrintWriter writer = new PrintWriter(file, "UTF-8");
             writer.printf("%d\n", n);
 
@@ -41,12 +50,12 @@ public class File_associate {
         }
     }
 
-    //Load_Project function
-    public void load_project() {
+    //Load Project function
+    public void load_project(String filepath) {
         try {
-
+            this.file = new File(filepath);
             Scanner sc = new Scanner(file);
-            n = sc.nextInt();
+            this.n = sc.nextInt();
 
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < 5; j++) {
