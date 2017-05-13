@@ -226,12 +226,12 @@ public class App extends javax.swing.JFrame {
     }
     
     //Trung's set Constructor
-    public void auto_open_JInternalWorld() {                                           
+    public void auto_open_JInternalWorld(int width, int height) {                                           
         // TODO add your handling code here:
         
                 JInternalWorld iWorld;
         // we create an internal world to be added within the JDesktop.
-        iWorld = new JInternalWorld( true,true,true );
+        iWorld = new JInternalWorld( true,true,true ); //Problem create new Sphere Group with sizeable ground
         iWorld.setSize(DestopPn.getSize());
         iWorld.setLocation( 0, 0 );
         iWorld.setResizable( true );

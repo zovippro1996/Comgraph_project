@@ -38,14 +38,12 @@ public class Ground_init_dialog extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Width_TextPanel = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        Height_TextPanel = new javax.swing.JTextPane();
         jCheckBox1 = new javax.swing.JCheckBox();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        width_input = new javax.swing.JTextField();
+        height_input = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -54,10 +52,6 @@ public class Ground_init_dialog extends javax.swing.JDialog {
         jLabel2.setText("Width");
 
         jLabel3.setText("Height");
-
-        jScrollPane1.setViewportView(Width_TextPanel);
-
-        jScrollPane2.setViewportView(Height_TextPanel);
 
         jCheckBox1.setText("Built-in");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +82,19 @@ public class Ground_init_dialog extends javax.swing.JDialog {
             }
         });
 
+        width_input.setToolTipText("");
+        width_input.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                width_inputActionPerformed(evt);
+            }
+        });
+
+        height_input.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                height_inputActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,8 +111,8 @@ public class Ground_init_dialog extends javax.swing.JDialog {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(height_input, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                            .addComponent(width_input)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(81, 81, 81)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -126,18 +133,18 @@ public class Ground_init_dialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(width_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(height_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -160,13 +167,13 @@ public class Ground_init_dialog extends javax.swing.JDialog {
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
         if (jCheckBox1.isSelected()) {
-            Width_TextPanel.setEditable(false);
-            Height_TextPanel.setEditable(false);
+            width_input.setEditable(false);
+            height_input.setEditable(false);
             jComboBox1.setEnabled(true);
             
         } else {
-            Width_TextPanel.setEditable(true);
-            Height_TextPanel.setEditable(true);
+            width_input.setEditable(true);
+            height_input.setEditable(true);
             jComboBox1.setEnabled(false);
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
@@ -178,15 +185,23 @@ public class Ground_init_dialog extends javax.swing.JDialog {
         new_app1.setVisible(true);
         
         //Get Input from 2 TextPanels
-        int init_width =  Integer.parseInt(Width_TextPanel.getText()); 
-        int init_height = Integer.parseInt(Width_TextPanel.getText()); 
+        int init_width =  Integer.parseInt(width_input.getText()); 
+        int init_height = Integer.parseInt(height_input.getText()); 
         
        //Need passing variables
-        new_app1.auto_open_JInternalWorld();
+        new_app1.auto_open_JInternalWorld(init_width, init_height);
         
         //Close the JDialog
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void height_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_height_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_height_inputActionPerformed
+
+    private void width_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_width_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_width_inputActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,8 +255,7 @@ public class Ground_init_dialog extends javax.swing.JDialog {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextPane Height_TextPanel;
-    private javax.swing.JTextPane Width_TextPanel;
+    private javax.swing.JTextField height_input;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
@@ -249,7 +263,6 @@ public class Ground_init_dialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField width_input;
     // End of variables declaration//GEN-END:variables
 }
