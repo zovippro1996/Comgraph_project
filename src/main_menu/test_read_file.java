@@ -12,29 +12,17 @@ import java.util.*;
  *
  * @author zovippro1996
  */
-public class test_file {
+public class test_read_file {
 
     public static void main(String[] args) {
-        
-       
-        
+
         int n = 3;
         int[] type = new int[n];
         int[][] pos = new int[n][5];
-        
-        int i,j;
-        
-        int sum = 0;
-        for (i=0 ; i<n; i++)
-            for (j=0; j<5; j++)
-            {
-                pos[i][j] = sum;
-                ++sum;
-                System.out.printf("%d", pos[i][j]);
-                
-            }
-        
-        
+
+        int i, j;
+
+
         try {
 
             File dir = new File("tmp/save project");
@@ -44,12 +32,27 @@ public class test_file {
             file.createNewFile();
 
             try {
+
+                Scanner sc = new Scanner(file);
+                n = sc.nextInt();
+                
+                for (i = 0 ;i< n ; i++){
+                    for (j = 0; j<5; j++) {
+                        pos[i][j] = sc.nextInt();
+                    }
+                    
+                }
+                
+                System.out.printf("%d\n", n);
+                for (i = 0 ;i< n ; i++){
+                    for (j = 0; j<5; j++) {
+                        System.out.printf("%d ",pos[i][j]);
+                    }
+                    
+                    System.out.println();
+                }
                 
 
-                FileOutputStream out = new FileOutputStream(file);
-                out.write(n);
-                out.close();
-                
             } catch (IOException e) {
                 // do something
             }
