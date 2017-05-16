@@ -105,7 +105,7 @@ public class ObjectsArray {
 //        }
                        
     }
-    public void Apply(TransformGroup  bg,Canvas3D c, Bounds b){
+    public void Apply(TransformGroup  bg,Canvas3D c, BoundingSphere b){
         if (bg == null){
             bg = new TransformGroup ();
             bg.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
@@ -120,7 +120,8 @@ public class ObjectsArray {
             
             bg.addChild(((Area)shape).getBg());
             
-            
+            MouseRotateY1 ne = new MouseRotateY1 (((Area)shape).getBg(), c, b);
+            ((Area)shape).getBg().addChild(ne);
             
             PickHighlightBehavior pickBeh = new 
             PickHighlightBehavior(c, ((Area)shape).getBg(),((Area)shape).getTrans(),((Area)shape).getT3d(), b, bg);

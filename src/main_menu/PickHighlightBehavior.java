@@ -48,7 +48,6 @@ import javax.media.j3d.*;
 import com.sun.j3d.utils.picking.PickTool;
 import com.sun.j3d.utils.picking.PickResult;
 import com.sun.j3d.utils.picking.behaviors.PickMouseBehavior;
-import java.awt.event.MouseEvent;
 import javax.vecmath.*;
 
 public class PickHighlightBehavior extends PickMouseBehavior {
@@ -112,8 +111,7 @@ public class PickHighlightBehavior extends PickMouseBehavior {
             this.parrent.removeChild(root);
 
         }else {
-            this.t3d = new Transform3D();
-            this.t3d.setTranslation(new Vector3d(0.0, 0.0, 0.0));
+            
          
         }
 	}

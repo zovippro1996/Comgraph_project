@@ -108,7 +108,6 @@ public class Area extends Shape3D{
         this.bg.setCapability(BranchGroup.ALLOW_DETACH);
         this.bg.setName("hello tu");
         this.bg.addChild(trans);
-        
        
         
         
