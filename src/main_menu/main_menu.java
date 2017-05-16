@@ -98,10 +98,10 @@ public class main_menu extends JFrame implements ActionListener {
         String action = e.getActionCommand();
         //Action for Create Button
         if (action.equals("Create")) {
-
-            Ground_init_dialog ground_init = new Ground_init_dialog(this,true);
-            ground_init.setVisible(true);
-               
+            
+            App app_1 = new App();
+            app_1.setVisible(true);
+                  
 
         } //Action for Load Button
         else if (action.equals("Load")) {

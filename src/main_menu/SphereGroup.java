@@ -62,6 +62,12 @@ public class SphereGroup
 		//    x,y spacing   x,y count  appearance
 		this(2.85f, 2.85f,   10, 10,      null, false );
 	}
+        
+        //Trung's Constructor
+        public SphereGroup(int width, int height)
+        {
+                this(7.85f, 7.85f, width, height, null, false);
+        }
 
 	public SphereGroup( Appearance app )
 	{
