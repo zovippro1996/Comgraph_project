@@ -44,14 +44,9 @@
 
 package main_menu;
 
-import com.sun.j3d.loaders.IncorrectFormatException;
-import com.sun.j3d.loaders.ParsingErrorException;
-import com.sun.j3d.loaders.Scene;
-import com.sun.j3d.loaders.objectfile.ObjectFile;
 import javax.media.j3d.*;
 import javax.vecmath.*;
 import com.sun.j3d.utils.geometry.*;
-import java.io.FileNotFoundException;
 
 public class SphereGroup
 	extends Group
@@ -65,7 +60,7 @@ public class SphereGroup
 	public SphereGroup( )
 	{
 		//    x,y spacing   x,y count  appearance
-		this(7.85f, 7.85f,   5, 5,      null, false );
+		this(2.85f, 2.85f,   10, 10,      null, false );
 	}
         
         //Trung's Constructor
@@ -77,7 +72,7 @@ public class SphereGroup
 	public SphereGroup( Appearance app )
 	{
 		//    radius   x,y spacing   x,y count  appearance
-		this(7.85f, 7.85f,   5, 5,      app, false );
+		this(2.85f, 2.85f,   10, 10,      app, false );
 	}
 
 	public SphereGroup(float xSpacing, float ySpacing,
@@ -98,59 +93,36 @@ public class SphereGroup
 		material.setShininess( 0.0f );
 		app.setMaterial( material );
 	    }
-
+        
+        
+        TransformGroup spinTg = new TransformGroup();
+	spinTg.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+	spinTg.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
+        
+        
+        
 	double xStart = -xSpacing * (double)(xCount-1) / 2.0;
 	double yStart = -ySpacing * (double)(yCount-1) / 2.0;
 	double x, z = yStart, y = 0.0;
 	shapes = new Shape3D[xCount * yCount];
 	for ( int i = 0; i < yCount; i++ )
 	    {
+                
 		x = xStart;
 		for ( int j = 0; j < xCount; j++ ) {  
-                    Area area = new Area(createGeometry(), app); 
-              
-//        int flags = ObjectFile.RESIZE;
-//	flags |= ObjectFile.TRIANGULATE;
-//        flags |= ObjectFile.STRIPIFY;   
-//        ObjectFile f = new ObjectFile(flags, 
-//	(float)(1.0 * Math.PI / 180.0));
-//        Scene s = null;
-//	try {
-//          System.out.print(Resources.getResource("resources/geometry/Thecity/TheCity.obj"));  
-//	  s = f.load(Resources.getResource("resources/geometry/Thecity/TheCity.obj"));
-//	}
-//	catch (FileNotFoundException e) {
-//	  System.err.println(e);
-//	  System.exit(1);
-//	}
-//	catch (ParsingErrorException e) {
-//	  System.err.println(e);
-//	  System.exit(1);
-//	}
-//	catch (IncorrectFormatException e) {
-//	  System.err.println(e);
-//	  System.exit(1);
-//	}
-//	  
-//
-//                    
-//                    
-                    
-		    area.vec.set( x, y, z );
-		    area.t3d.setTranslation( area.vec );
-		    area.trans = new TransformGroup( area.t3d );
-                    
-		    addChild( area.trans );
+                    DefautArea area = new DefautArea(app,x,y,z);               
                     area.setName("Area " + Integer.toString(i) +", "+ Integer.toString(j));
-		    area.trans.addChild( area);
 		    x += xSpacing;
-		    shapes[numShapes] = area;
-		    if (overrideflag) 
-			shapes[numShapes].setCapability(Shape3D.ALLOW_APPEARANCE_OVERRIDE_WRITE);                    
-		    numShapes++;                 
+                    
+                    spinTg.addChild(area.getTrans());
+                    
+		                 
 		}
 		z += ySpacing;
 	    }
+        addChild(spinTg);
+        
+        
     }
     public Shape3D getSelected(){
         return getShape(shapeIsSelected);
@@ -168,8 +140,8 @@ public class SphereGroup
  int idx = 0;
  for (int i = 0; i < m; i++) {
  for (int j = 0; j < n; j++) {
- float x = (i - m/2)*0.2f;
- float z = (j - n/2)*0.2f;
+ float x = (i - m/2)*0.02f;
+ float z = (j - n/2)*0.02f;
  float y = 0.1f * (float)(Math.cos(x) * Math.sin(z))/
  ((float)Math.exp(0.25*(x*x+z*z)))-1.0f;
  pts[idx++] = new Point3f(x, y, z);

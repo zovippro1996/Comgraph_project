@@ -48,18 +48,24 @@ import javax.media.j3d.*;
 import com.sun.j3d.utils.picking.PickTool;
 import com.sun.j3d.utils.picking.PickResult;
 import com.sun.j3d.utils.picking.behaviors.PickMouseBehavior;
+import java.awt.event.MouseEvent;
 import javax.vecmath.*;
 
 public class PickHighlightBehavior extends PickMouseBehavior {
   Appearance savedAppearance = null;
   Shape3D oldShape = null;
   Appearance highlightAppearance;
+  private objectmenu menu;
+  private final BranchGroup root;
+    private final TransformGroup parrent;
 
   public PickHighlightBehavior(Canvas3D canvas, BranchGroup root,
-			       Bounds bounds) {
+			       Bounds bounds, TransformGroup parrent) {
       super(canvas, root, bounds);
+      this.parrent = parrent;
+      this.root = root;
       this.setSchedulingBounds(bounds);
-      root.addChild(this);
+      this.root.addChild(this);
       Color3f white = new Color3f(1.0f, 1.0f, 1.0f);
       Color3f black = new Color3f(0.0f, 0.0f, 0.0f);
       Color3f highlightColor = new Color3f(0.0f, 1.0f, 0.0f);
@@ -72,8 +78,11 @@ public class PickHighlightBehavior extends PickMouseBehavior {
 						   80.0f));
 
       pickCanvas.setMode(PickTool.BOUNDS);
+      
   }
 
+   
+    
   @Override
     public void updateScene(int xpos, int ypos) {
 	PickResult pickResult = null;
@@ -82,18 +91,26 @@ public class PickHighlightBehavior extends PickMouseBehavior {
 	pickCanvas.setShapeLocation(xpos, ypos);
 
 	pickResult = pickCanvas.pickClosest();
+        
 	if (pickResult != null) {
-	    shape = (Shape3D) pickResult.getNode(PickResult.SHAPE3D);
-            System.out.print(shape.getName());
+          //  shape = (Shape3D) pickResult.getNode(PickResult.SHAPE3D);
+            menu = new objectmenu(null, true);
+            menu.setLocation(100,100);
+            if (mevent.isShiftDown())
+                menu.setVisible(true);
+        if (menu.getAction().endsWith("remove")){
+            this.parrent.removeChild(root);
+        }
 	}
 
 	if (oldShape != null){
-	//    oldShape.setAppearance(savedAppearance);
+	    oldShape.setAppearance(savedAppearance);
 	}
 	if (shape != null) {
 	    savedAppearance = shape.getAppearance();
 	    oldShape = shape;
-	   // shape.setAppearance(highlightAppearance);
+           
+	    
 	}
     }
 }
