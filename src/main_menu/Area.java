@@ -29,13 +29,21 @@ import javax.vecmath.Vector3d;
 public class Area extends Shape3D{
 
     	Vector3d vec = new Vector3d( );
-	Transform3D t3d = new Transform3D( );
+	private Transform3D t3d;
         private TransformGroup trans ;
         private BranchGroup bg;
         private CollisionDetector be ;
 
     public CollisionDetector getBe() {
         return be;
+    }
+
+    public Transform3D getT3d() {
+        return t3d;
+    }
+
+    public void setT3d(Transform3D t3d) {
+        this.t3d = t3d;
     }
 
     public void setBe(CollisionDetector be) {
@@ -54,6 +62,7 @@ public class Area extends Shape3D{
         super(null,app);
         this.setGeometry(createGeometry());
         this.bg = new BranchGroup();
+        this.t3d = new Transform3D();
         int flags = ObjectFile.RESIZE;
 	flags |= ObjectFile.TRIANGULATE;
         flags |= ObjectFile.STRIPIFY;   
@@ -70,11 +79,11 @@ public class Area extends Shape3D{
 	}
         
         vec.set( x, y, z );
-        t3d.setTranslation( vec );
+        this.t3d.setTranslation( vec );
        
-        t3d.setScale(1);
+        this.t3d.setScale(1);
         //t3d.setRotation(new AxisAngle4f(1.0f, 1.0f, 10.0f, 1f));
-        trans = new TransformGroup( t3d );
+        trans = new TransformGroup( this.t3d );
         trans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
         trans.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
         trans.setCapability(TransformGroup.ENABLE_PICK_REPORTING);

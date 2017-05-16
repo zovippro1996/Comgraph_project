@@ -57,11 +57,15 @@ public class PickHighlightBehavior extends PickMouseBehavior {
   Appearance highlightAppearance;
   private objectmenu menu;
   private final BranchGroup root;
+  TransformGroup trans;
+  Transform3D t3d;
     private final TransformGroup parrent;
 
   public PickHighlightBehavior(Canvas3D canvas, BranchGroup root,
 			       Bounds bounds, TransformGroup parrent) {
       super(canvas, root, bounds);
+      menu = new objectmenu(null, true);
+            menu.setLocation(100,100);
       this.parrent = parrent;
       this.root = root;
       this.setSchedulingBounds(bounds);
@@ -81,6 +85,13 @@ public class PickHighlightBehavior extends PickMouseBehavior {
       
   }
 
+    PickHighlightBehavior(Canvas3D c, BranchGroup bg, TransformGroup trans, Transform3D t3d, Bounds b, TransformGroup bg0) {
+        this(c,bg,b,bg0);
+        this.trans = trans;
+        this.t3d = t3d;
+
+        }
+
    
     
   @Override
@@ -94,12 +105,16 @@ public class PickHighlightBehavior extends PickMouseBehavior {
         
 	if (pickResult != null) {
           //  shape = (Shape3D) pickResult.getNode(PickResult.SHAPE3D);
-            menu = new objectmenu(null, true);
-            menu.setLocation(100,100);
+            
             if (mevent.isShiftDown())
                 menu.setVisible(true);
         if (menu.getAction().endsWith("remove")){
             this.parrent.removeChild(root);
+
+        }else {
+            this.t3d = new Transform3D();
+            this.t3d.setTranslation(new Vector3d(0.0, 0.0, 0.0));
+         
         }
 	}
 
