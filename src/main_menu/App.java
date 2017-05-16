@@ -5,6 +5,9 @@
  */
 package main_menu;
 
+import javax.media.j3d.PickShape;
+import javax.media.j3d.SceneGraphPath;
+
 /**
  *
  * @author levan
@@ -14,8 +17,11 @@ public class App extends javax.swing.JFrame {
     /**
      * Creates new form App
      */
+    JInternalWorld iWorld;
     public App() {
+        
         initComponents();
+        
     }
 
     /**
@@ -47,7 +53,7 @@ public class App extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Add Construction ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -85,7 +91,7 @@ public class App extends javax.swing.JFrame {
                     .addComponent(jButton5)
                     .addComponent(jButton6)
                     .addComponent(jButton7))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +110,7 @@ public class App extends javax.swing.JFrame {
                 .addComponent(jButton6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton7)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -113,11 +119,11 @@ public class App extends javax.swing.JFrame {
         DestopPn.setLayout(DestopPnLayout);
         DestopPnLayout.setHorizontalGroup(
             DestopPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 487, Short.MAX_VALUE)
+            .addGap(0, 583, Short.MAX_VALUE)
         );
         DestopPnLayout.setVerticalGroup(
             DestopPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 292, Short.MAX_VALUE)
+            .addGap(0, 338, Short.MAX_VALUE)
         );
 
         jSplitPane1.setRightComponent(DestopPn);
@@ -152,11 +158,11 @@ public class App extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
         );
 
         pack();
@@ -165,24 +171,42 @@ public class App extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         
-                JInternalWorld iWorld;
+                
         // we create an internal world to be added within the JDesktop.
-        iWorld = new JInternalWorld( true,true,true );
+        
+       iWorld = new JInternalWorld( true,true,true );
         iWorld.setSize(DestopPn.getSize());
         iWorld.setLocation( 0, 0 );
         iWorld.setResizable( true );
-       
         DestopPn.add( iWorld );
         iWorld.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        PickShape ps = null;
         // TODO add your handling code here:
+        SceneGraphPath pickClosest = this.iWorld.getScene().pickClosest(ps);
+        System.out.println(pickClosest.toString());
+      
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        addmenu addmn = new addmenu(this,true);
+        addmn.setVisible(true);
+        
+        
+        
+        Area area = new Area (this.iWorld.getA(),addmn.getXX(),1,addmn.getYY(),addmn.getAction());
+        
+        
+        
+        PickHighlightBehavior pickBeh = new 
+            PickHighlightBehavior(this.iWorld.getCanvas(), area.getBg(), this.iWorld.getBoundsj3d(), this.iWorld.getObjTrans());
+        this.iWorld.getObjTrans().addChild(area.getBg());
+        
         
        
         
