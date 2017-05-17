@@ -118,6 +118,8 @@ public class main_menu extends JFrame implements ActionListener {
                 File selectedFile = fileChooser.getSelectedFile();
                 try {
                     Scanner s = new Scanner(selectedFile);
+                    
+                    //Get Building Array
                     ArrayList<String> list = new ArrayList<String>();
                     while (s.hasNext()) {
                         list.add(s.next());
@@ -127,7 +129,8 @@ public class main_menu extends JFrame implements ActionListener {
                     Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-
+            this.dispose();
+            
         } //Action for Credits Button
         else if (action.equals("Credits")) {
             credits credit_main = new credits();
