@@ -142,12 +142,9 @@ public class PickHighlightBehavior extends PickMouseBehavior {
         if (menu.getAction().equals("Replace")){
       
         this.parrent.removeChild(root);
-        Area area = new Area (null, this.t3d, menu.getNewh()); 
+        Area area = new Area (null, this.t3d, menu.getNewh(),this.c, (BoundingSphere) this.b, this.parrent ); 
         this.parrent.addChild(area.getBg());
-        PickHighlightBehavior pickBeh = new 
-            PickHighlightBehavior(this.c, area.getBg(), area.t3d,
-            area.getTrans(), this.b, this.parrent);
-            area.getBg().addChild(pickBeh);
+        
         }
           //  this.parrent.removeChild(root);
             

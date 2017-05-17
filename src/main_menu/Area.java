@@ -10,7 +10,6 @@ import com.sun.j3d.loaders.IncorrectFormatException;
 import com.sun.j3d.loaders.ParsingErrorException;
 import com.sun.j3d.loaders.Scene;
 import com.sun.j3d.loaders.objectfile.ObjectFile;
-import com.sun.j3d.utils.geometry.ColorCube;
 import com.sun.j3d.utils.geometry.GeometryInfo;
 import com.sun.j3d.utils.geometry.NormalGenerator;
 import java.io.FileNotFoundException;
@@ -34,7 +33,9 @@ public class Area extends Shape3D{
 	Transform3D t3d = new Transform3D( );
         private TransformGroup trans ;
         private BranchGroup bg;
-
+        private Canvas3D p_c;
+        private BoundingSphere p_b;
+        private TransformGroup p_trans;
     
 
     public TransformGroup getTrans() {
@@ -44,9 +45,12 @@ public class Area extends Shape3D{
     public void setTrans(TransformGroup trans) {
         this.trans = trans;
     }
-    Area(Appearance app, Transform3D t3d, String housename){
+    Area(Appearance app, Transform3D t3d, String housename, Canvas3D pc, BoundingSphere pbounds, TransformGroup ptrans){
          super(null,app);
          this.bg = new BranchGroup();
+         this.p_c = pc;
+        this.p_b = pbounds;
+        this.p_trans = ptrans;
         int flags = ObjectFile.RESIZE;
 	flags |= ObjectFile.TRIANGULATE;
         flags |= ObjectFile.STRIPIFY;   
@@ -107,11 +111,18 @@ public class Area extends Shape3D{
         this.trans.setBounds(bounds);
         this.bg.setBounds(bounds);
     }
+           
+        PickHighlightBehavior pickBeh = new 
+            PickHighlightBehavior(this.p_c, this.bg,this.t3d,this.trans, this.p_b, this.p_trans);
+            this.bg.addChild(pickBeh);
     }
     
     
-    Area(Appearance app,double x, double y, double z, String housename) {
+    Area(Appearance app,double x, double y, double z, String housename, Canvas3D pc, BoundingSphere pbounds, TransformGroup ptrans) {
         super(null,app);
+        this.p_c = pc;
+        this.p_b = pbounds;
+        this.p_trans = ptrans;
         this.setGeometry(createGeometry());
         this.bg = new BranchGroup();
         int flags = ObjectFile.RESIZE;
@@ -175,6 +186,11 @@ public class Area extends Shape3D{
         this.trans.setBounds(bounds);
         this.bg.setBounds(bounds);
         }
+        
+        
+        PickHighlightBehavior pickBeh = new 
+            PickHighlightBehavior(this.p_c, this.bg,this.t3d,this.trans, this.p_b, this.p_trans);
+            this.bg.addChild(pickBeh);
        
        
         

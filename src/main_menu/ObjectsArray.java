@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.media.j3d.Appearance;
 import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.Bounds;
+import javax.media.j3d.BranchGroup;
 import javax.media.j3d.Canvas3D;
 import javax.media.j3d.ColoringAttributes;
 import javax.media.j3d.Material;
@@ -68,12 +69,12 @@ public class ObjectsArray {
     private int heigh;
     public Appearance app;
 
-    public ObjectsArray(int width, int heigh, Appearance app) {
-        this(null, width, heigh, app);
+    public ObjectsArray(int width, int heigh, Appearance app, Canvas3D pc, BoundingSphere pbounds, BranchGroup pbg, TransformGroup ptrans) {
+        this(null, width, heigh, app,pc,pbounds, ptrans);
         
     }
 
-    public ObjectsArray(ArrayList<Shape3D> Shapes, int width, int heigh, Appearance app) {
+    public ObjectsArray(ArrayList<Shape3D> Shapes, int width, int heigh, Appearance app, Canvas3D pc, BoundingSphere pbounds, TransformGroup ptrans) {
         this.Shapes = Shapes;
         this.width = width;
         this.heigh = heigh;
@@ -96,7 +97,7 @@ public class ObjectsArray {
             x= -2.5;
             
             for (int j=0; j<this.heigh; j++){
-                Area area = new Area(this.app,x,y,z,"Tree");
+                Area area = new Area(this.app,x,y,z,"Tree", pc, pbounds, ptrans);
                 this.Shapes.add(area);
                 x= x+5;
             }
@@ -116,9 +117,9 @@ public class ObjectsArray {
             BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0),
         1000.0);
       
-            PickHighlightBehavior pickBeh = new 
-            PickHighlightBehavior(c, ((Area)shape).getBg(),((Area)shape).t3d,((Area)shape).getTrans(), b, bg);
-            ((Area)shape).getBg().addChild(pickBeh);
+//            PickHighlightBehavior pickBeh = new 
+//            PickHighlightBehavior(c, ((Area)shape).getBg(),((Area)shape).t3d,((Area)shape).getTrans(), b, bg);
+//            ((Area)shape).getBg().addChild(pickBeh);
             
             
            // PickTranslateBehavior translate = new PickTranslateBehavior(((Area)shape).getBg(), c, b);

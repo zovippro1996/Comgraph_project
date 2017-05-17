@@ -219,13 +219,15 @@ public class JInternalWorld extends JInternalFrame {
     m.setLightingEnable(true);
     a.setMaterial(m);
             
-        ObjectsArray oa = new ObjectsArray(5,5, a);
                              
         bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0),
                 100.0);
         Color3f bgColor = new Color3f(1.0f, 1.0f, 1.0f);
         Background bgNode = new Background(bgColor);
         bgNode.setApplicationBounds(bounds);
+        
+                ObjectsArray oa = new ObjectsArray(5,5, a, c ,bounds, objRoot,objTrans);
+
         oa.Apply(objTrans,c,bounds);
         
         

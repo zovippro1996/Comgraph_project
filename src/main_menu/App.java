@@ -72,6 +72,7 @@ public class App extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
 
@@ -178,6 +179,9 @@ public class App extends javax.swing.JFrame {
         jMenuItem3.setText("Save");
         jMenu1.add(jMenuItem3);
 
+        jMenuItem4.setText("Exit");
+        jMenu1.add(jMenuItem4);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -224,16 +228,15 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-
-        addmenu addmn = new addmenu(this, true);
+   addmenu addmn = new addmenu(this, true);
         addmn.setVisible(true);
         if (!addmn.getAction().equals("none")) {
-            Area area = new Area(this.iWorld.getA(), addmn.getXX(), 1, addmn.getYY(), addmn.getAction());
-            PickHighlightBehavior pickBeh = new PickHighlightBehavior(this.iWorld.getCanvas(), area.getBg(), area.t3d,
-                    area.getTrans(), this.iWorld.getBoundsj3d(), this.iWorld.getObjTrans());
-            this.iWorld.getObjTrans().addChild(area.getBg());
+//            Area area = new Area(this.iWorld.getA(), addmn.getXX(), 1, addmn.getYY(), addmn.getAction());
+//            PickHighlightBehavior pickBeh = new PickHighlightBehavior(this.iWorld.getCanvas(), area.getBg(), area.t3d,
+//                    area.getTrans(), this.iWorld.getBoundsj3d(), this.iWorld.getObjTrans());
+//            this.iWorld.getObjTrans().addChild(area.getBg());
         }
+
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -333,6 +336,7 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
