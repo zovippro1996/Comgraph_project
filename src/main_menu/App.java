@@ -6,7 +6,9 @@
 package main_menu;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -33,7 +35,6 @@ public class App extends javax.swing.JFrame {
 
     public App() {
 
-        
         //make sure the program exits when the frame closes
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Untitled Project");
@@ -238,7 +239,7 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-   addmenu addmn = new addmenu(this, true);
+        addmenu addmn = new addmenu(this, true);
         addmn.setVisible(true);
         if (!addmn.getAction().equals("none")) {
 //            Area area = new Area(this.iWorld.getA(), addmn.getXX(), 1, addmn.getYY(), addmn.getAction());
@@ -246,7 +247,6 @@ public class App extends javax.swing.JFrame {
 //                    area.getTrans(), this.iWorld.getBoundsj3d(), this.iWorld.getObjTrans());
 //            this.iWorld.getObjTrans().addChild(area.getBg());
         }
-
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -258,23 +258,23 @@ public class App extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-            int returnValue = fileChooser.showOpenDialog(null);
-            if (returnValue == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = fileChooser.getSelectedFile();
-                try {
-                    Scanner s = new Scanner(selectedFile);
-                    
-                    //Get Building Array
-                    ArrayList<String> list = new ArrayList<String>();
-                    while (s.hasNext()) {
-                        list.add(s.next());
-                    }
-                    s.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            try {
+                Scanner s = new Scanner(selectedFile);
+
+                //Get Building Array
+                ArrayList<String> list = new ArrayList<String>();
+                while (s.hasNext()) {
+                    list.add(s.next());
                 }
+                s.close();
+            } catch (IOException ex) {
+                Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+        }
+
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -285,21 +285,20 @@ public class App extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showSaveDialog(null);
-         if (returnValue == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = fileChooser.getSelectedFile();
-                try {
-                    Scanner s = new Scanner(selectedFile);
-                    
-                    //Get Building Array
-                    ArrayList<String> list = new ArrayList<String>();
-                    while (s.hasNext()) {
-                        list.add(s.next());
-                    }
-                    s.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            try {
+                PrintWriter pw = new PrintWriter(new FileOutputStream(selectedFile));
+                
+                //Array Building Here----------------- Trung
+                for (Club club : clubs) {
+                    pw.println(club.getName());
                 }
+                pw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
