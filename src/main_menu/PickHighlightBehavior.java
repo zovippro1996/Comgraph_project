@@ -56,10 +56,10 @@ public class PickHighlightBehavior extends PickMouseBehavior {
   Appearance highlightAppearance;
   private objectmenu menu;
   private TransformGroup trans;
-  private final BranchGroup root;
-    private final TransformGroup parrent;
-
-    
+  private  BranchGroup root;
+    private  TransformGroup parrent;
+    private Canvas3D c;    
+    private Bounds b;
     private final Transform3D t3d;
 
   public PickHighlightBehavior(Canvas3D canvas, BranchGroup root, Transform3D t3d, TransformGroup trans,          
@@ -67,10 +67,11 @@ public class PickHighlightBehavior extends PickMouseBehavior {
       super(canvas, root, bounds);
       this.parrent = parrent;
       this.t3d = t3d;
+      this.c = canvas;
+      this.b = bounds;
       this.trans = trans;
       this.root = root;
       this.setSchedulingBounds(bounds);
-      this.root.addChild(this);
     
       Color3f white = new Color3f(1.0f, 1.0f, 1.0f);
       Color3f black = new Color3f(0.0f, 0.0f, 0.0f);
@@ -83,7 +84,7 @@ public class PickHighlightBehavior extends PickMouseBehavior {
 						   highlightColor, white,
 						   80.0f));
 
-      pickCanvas.setMode(PickTool.BOUNDS);
+      pickCanvas.setMode(PickTool.GEOMETRY);
       
   }
 
@@ -102,7 +103,7 @@ public class PickHighlightBehavior extends PickMouseBehavior {
           //  shape = (Shape3D) pickResult.getNode(PickResult.SHAPE3D);
             menu = new objectmenu(null, true);
             menu.setLocation(100,100);
-            if (1==1)
+            if (!mevent.isShiftDown())
                 menu.setVisible(true);
         if (menu.getAction().endsWith("remove")){
             this.parrent.removeChild(root);
@@ -138,8 +139,23 @@ public class PickHighlightBehavior extends PickMouseBehavior {
         this.t3d.mul(step);
         this.trans.setTransform(t3d);
         }
-        System.out.print(t3d.toString());
-       
+        if (menu.getAction().equals("Replace")){
+      
+        this.parrent.removeChild(root);
+        Area area = new Area (null, this.t3d, menu.getNewh()); 
+        this.parrent.addChild(area.getBg());
+        PickHighlightBehavior pickBeh = new 
+            PickHighlightBehavior(this.c, area.getBg(), area.t3d,
+            area.getTrans(), this.b, this.parrent);
+            area.getBg().addChild(pickBeh);
+        }
+          //  this.parrent.removeChild(root);
+            
+//            Area area = new Area (null, this.t3d, menu.getAction());        
+//        PickHighlightBehavior pickBeh = new 
+//            PickHighlightBehavior(this.iWorld.getCanvas(), area.getBg(), area.t3d,
+//                    area.getTrans(), this.iWorld.getBoundsj3d(), this.iWorld.getObjTrans());
+//            
        
 	}
 

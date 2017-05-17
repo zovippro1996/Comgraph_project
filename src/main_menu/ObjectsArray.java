@@ -92,17 +92,17 @@ public class ObjectsArray {
 		material.setShininess( 0.0f );
 		app.setMaterial( material );
 	    }
-//        for (int i= 0; i< this.width;i++){
-//            x= -2.5;
-//            
-//            for (int j=0; j<this.heigh; j++){
-//                Area area = new Area(this.app,x,y,z);
-//                this.Shapes.add(area);
-//                x= x+2;
-//            }
-//            z = z+2;
-//
-//        }
+        for (int i= 0; i< this.width;i++){
+            x= -2.5;
+            
+            for (int j=0; j<this.heigh; j++){
+                Area area = new Area(this.app,x,y,z,"Tree");
+                this.Shapes.add(area);
+                x= x+5;
+            }
+            z = z+5;
+
+        }
                        
     }
     public void Apply(TransformGroup  bg,Canvas3D c, Bounds b){
@@ -113,18 +113,20 @@ public class ObjectsArray {
 
         for (Shape3D shape : this.Shapes){
             
-            
-            ((Area)shape).getBe().setBounds(new BoundingSphere(new Point3d(0.0,0.0,0.0), 100.0));
-            ((Area)shape).getBg().addChild(((Area)shape).getBe());
+     
 
             
             bg.addChild(((Area)shape).getBg());
+            BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0),
+        1000.0);
+
+        
+            
+            PickHighlightBehavior pickBeh = new 
+            PickHighlightBehavior(c, ((Area)shape).getBg(),((Area)shape).t3d,((Area)shape).getTrans(), b, bg);
+            ((Area)shape).getBg().addChild(pickBeh);
             
             
-            
-//            PickHighlightBehavior pickBeh = new 
-//            PickHighlightBehavior(c, ((Area)shape).getBg(),((Area)shape).t3d,((Area)shape).getTrans(), b, bg);
-//            
            // PickTranslateBehavior translate = new PickTranslateBehavior(((Area)shape).getBg(), c, b);
             //((Area)shape).getBg().addChild(translate);
            // PickZoomBehavior zoom = new PickZoomBehavior(((Area)shape).getBg(), c, b);

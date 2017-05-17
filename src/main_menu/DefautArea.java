@@ -88,8 +88,8 @@ private Geometry createGeometry() {
  int idx = 0;
  for (int i = 0; i < m; i++) {
  for (int j = 0; j < n; j++) {
- float x = (i - m/2)*0.1f;
- float z = (j - n/2)*0.1f;
+ float x = (i - m/2)*0.075f;
+ float z = (j - n/2)*0.075f;
  float y = 0.1f * (float)(Math.cos(x) * Math.sin(z))/
  ((float)Math.exp(0.25*(x*x+z*z)))-1.0f;
  pts[idx++] = new Point3f(x, y, z);

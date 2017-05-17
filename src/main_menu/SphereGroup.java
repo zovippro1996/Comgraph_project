@@ -88,9 +88,9 @@ public class SphereGroup
 	    {
 		app = new Appearance( );
 		Material material = new Material( );
-		material.setDiffuseColor( new Color3f( 0.8f, 0.8f, 0.8f ) );
-		material.setSpecularColor( new Color3f( 0.0f, 0.0f, 0.0f ) );
-		material.setShininess( 0.0f );
+		material.setDiffuseColor( new Color3f( 0.0f, 0.7f, 0.1f ) );
+		material.setSpecularColor( new Color3f( 0.0f, 0.7f, 0.1f ) );
+		material.setShininess( 0.3f );
 		app.setMaterial( material );
 	    }
         
@@ -101,9 +101,9 @@ public class SphereGroup
         
         
         
-	double xStart = -xSpacing * (double)(xCount-1) / 2.0;
-	double yStart = -ySpacing * (double)(yCount-1) / 2.0;
-	double x, z = yStart, y = 0.8;
+	double xStart = -5;
+	double yStart = -5;
+	double x, z = yStart, y = 0;
 	shapes = new Shape3D[xCount * yCount];
 	for ( int i = 0; i < yCount; i++ )
 	    {

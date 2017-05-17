@@ -10,6 +10,7 @@ import com.sun.j3d.loaders.IncorrectFormatException;
 import com.sun.j3d.loaders.ParsingErrorException;
 import com.sun.j3d.loaders.Scene;
 import com.sun.j3d.loaders.objectfile.ObjectFile;
+import com.sun.j3d.utils.geometry.ColorCube;
 import com.sun.j3d.utils.geometry.GeometryInfo;
 import com.sun.j3d.utils.geometry.NormalGenerator;
 import java.io.FileNotFoundException;
@@ -19,6 +20,7 @@ import javax.media.j3d.Geometry;
 import javax.media.j3d.*;
 import javax.media.j3d.Transform3D;
 import javax.media.j3d.TransformGroup;
+import javax.vecmath.Point3d;
 import javax.vecmath.Point3f;
 import javax.vecmath.Vector3d;
 
@@ -32,15 +34,8 @@ public class Area extends Shape3D{
 	Transform3D t3d = new Transform3D( );
         private TransformGroup trans ;
         private BranchGroup bg;
-        private CollisionDetector be ;
 
-    public CollisionDetector getBe() {
-        return be;
-    }
-
-    public void setBe(CollisionDetector be) {
-        this.be = be;
-    }
+    
 
     public TransformGroup getTrans() {
         return trans;
@@ -49,7 +44,72 @@ public class Area extends Shape3D{
     public void setTrans(TransformGroup trans) {
         this.trans = trans;
     }
+    Area(Appearance app, Transform3D t3d, String housename){
+         super(null,app);
+         this.bg = new BranchGroup();
+        int flags = ObjectFile.RESIZE;
+	flags |= ObjectFile.TRIANGULATE;
+        flags |= ObjectFile.STRIPIFY;   
+        ObjectFile f = new ObjectFile(flags, 
+	(float)(1.0 * Math.PI / 180.0));
+        Loader3DS loader = new Loader3DS();
+        Scene s = null;
+	try {
+	  s = f.load(Resources.getResource("resources/houses/"+housename+"/"+housename+".obj"));
+	}
+	catch (     FileNotFoundException | ParsingErrorException | IncorrectFormatException e) {
+	  System.err.println(e);
+	  System.exit(1);
+	}
+        
+        this.t3d = t3d;
+       
+        this.t3d.setScale(1.5);
+        //t3d.setRotation(new AxisAngle4f(1.0f, 1.0f, 10.0f, 1f));
+        trans = new TransformGroup( this.t3d );
+        trans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        trans.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
+        trans.setCapability(TransformGroup.ENABLE_PICK_REPORTING);
+        
+        trans.addChild( s.getSceneGroup());
+        
+//          ColorCube oriShape = new ColorCube(0.1);
+//          oriShape.setCollidable(false);
+//          this.trans.addChild(oriShape);
 
+         Box cube = new Box(0.1,0.1,0.1);
+        
+        //Appearance ap = cube.getAppearance();
+	//ColoringAttributes ca = new ColoringAttributes();
+	//ca.setColor(0.6f, 0.3f, 0.0f);
+	//ap.setCapability(ap.ALLOW_COLORING_ATTRIBUTES_WRITE);
+	//ap.setColoringAttributes(ca);
+        //be = new CollisionDetector(cube);
+
+        //this.trans.addChild(cube);
+      //  this.bg.setCapability(BranchGroup.ALLOW_CHILDREN_READ);
+    //    this.bg.setCapability(BranchGroup.ALLOW_CHILDREN_WRITE);
+        this.bg.setCapability(BranchGroup.ALLOW_CHILDREN_EXTEND);
+        this.bg.setCapability(BranchGroup.ALLOW_DETACH);
+        this.bg.setName("hello tu");
+        this.bg.addChild(trans);
+       
+        TransformGroup shared = new TransformGroup();
+        shared.addChild(cube);
+        this.trans.addChild(shared);
+        BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 10.0, 0.0),
+        0.0);
+        bounds.setRadius(0.02);
+        if (housename != "RootA"){
+        CollisionDetectorGroup cdGroup = new CollisionDetectorGroup(this.trans, this.t3d, this.trans);
+        cdGroup.setSchedulingBounds(bounds);
+        this.trans.addChild(cdGroup);
+        this.trans.setBounds(bounds);
+        this.bg.setBounds(bounds);
+    }
+    }
+    
+    
     Area(Appearance app,double x, double y, double z, String housename) {
         super(null,app);
         this.setGeometry(createGeometry());
@@ -81,8 +141,11 @@ public class Area extends Shape3D{
         
         trans.addChild( s.getSceneGroup());
         
-        this.trans.setCollidable(true);
-        //Box cube = new Box(1.0,1.0,1.0);
+//          ColorCube oriShape = new ColorCube(0.1);
+//          oriShape.setCollidable(false);
+//          this.trans.addChild(oriShape);
+
+         Box cube = new Box(0.1,0.1,0.1);
         
         //Appearance ap = cube.getAppearance();
 	//ColoringAttributes ca = new ColoringAttributes();
@@ -92,16 +155,28 @@ public class Area extends Shape3D{
         //be = new CollisionDetector(cube);
 
         //this.trans.addChild(cube);
-        this.bg.setCollidable(true);
       //  this.bg.setCapability(BranchGroup.ALLOW_CHILDREN_READ);
     //    this.bg.setCapability(BranchGroup.ALLOW_CHILDREN_WRITE);
         this.bg.setCapability(BranchGroup.ALLOW_CHILDREN_EXTEND);
         this.bg.setCapability(BranchGroup.ALLOW_DETACH);
         this.bg.setName("hello tu");
         this.bg.addChild(trans);
-        
        
-        
+        TransformGroup shared = new TransformGroup();
+        shared.addChild(cube);
+        this.trans.addChild(shared);
+        BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 10.0, 0.0),
+        0.0);
+        bounds.setRadius(0.02);
+        if (housename != "RootA"){
+        CollisionDetectorGroup cdGroup = new CollisionDetectorGroup(this.trans, t3d, this.trans);
+        cdGroup.setSchedulingBounds(bounds);
+        this.trans.addChild(cdGroup);
+        this.trans.setBounds(bounds);
+        this.bg.setBounds(bounds);
+        }
+       
+       
         
 //To change body of generated methods, choose Tools | Templates.
     }
