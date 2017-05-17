@@ -5,10 +5,17 @@
  */
 package main_menu;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.PickShape;
 import javax.media.j3d.SceneGraphPath;
 import javax.media.j3d.TransformGroup;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 /**
@@ -161,6 +168,11 @@ public class App extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Load");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Save");
@@ -230,6 +242,27 @@ public class App extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.out.print(this.current_g.toString());
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+            int returnValue = fileChooser.showOpenDialog(null);
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = fileChooser.getSelectedFile();
+                try {
+                    Scanner s = new Scanner(selectedFile);
+                    
+                    //Get Building Array
+                    ArrayList<String> list = new ArrayList<String>();
+                    while (s.hasNext()) {
+                        list.add(s.next());
+                    }
+                    s.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
