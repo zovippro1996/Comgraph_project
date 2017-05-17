@@ -10,15 +10,6 @@ package main_menu;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import com.sun.j3d.utils.geometry.Box;
-import com.sun.j3d.utils.universe.*;
-import com.sun.j3d.utils.geometry.Sphere;
-import com.sun.j3d.utils.image.TextureLoader;
-import java.awt.Container;
-import java.awt.FlowLayout;
-import javax.media.j3d.*;
-import javax.vecmath.*;
-import java.awt.GraphicsConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -93,7 +84,7 @@ public class main_menu extends JFrame implements ActionListener {
         //Add Panel to the Main Menu
         add(pnlButton);
 
-//Make the Main Menu Appear
+        //Make the Main Menu Appear
         setVisible(true);
 
     }
@@ -118,7 +109,7 @@ public class main_menu extends JFrame implements ActionListener {
                 File selectedFile = fileChooser.getSelectedFile();
                 try {
                     Scanner s = new Scanner(selectedFile);
-                    
+
                     //Get Building Array
                     ArrayList<String> list = new ArrayList<String>();
                     while (s.hasNext()) {
@@ -130,7 +121,7 @@ public class main_menu extends JFrame implements ActionListener {
                 }
             }
             this.dispose();
-            
+
         } //Action for Credits Button
         else if (action.equals("Credits")) {
             credits credit_main = new credits();
