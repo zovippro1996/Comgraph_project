@@ -11,11 +11,12 @@ import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.Bounds;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.Canvas3D;
-import javax.media.j3d.ColoringAttributes;
 import javax.media.j3d.Material;
 import javax.media.j3d.Shape3D;
+import javax.media.j3d.Transform3D;
 import javax.media.j3d.TransformGroup;
 import javax.vecmath.Color3f;
+import javax.vecmath.Matrix4d;
 import javax.vecmath.Point3d;
 
 /**
@@ -68,15 +69,17 @@ public class ObjectsArray {
     }
     private int heigh;
     public Appearance app;
+    ArrayList<String> list;
 
-    public ObjectsArray(int width, int heigh, Appearance app, Canvas3D pc, BoundingSphere pbounds, BranchGroup pbg, TransformGroup ptrans) {
-        this(null, width, heigh, app,pc,pbounds, ptrans);
+    public ObjectsArray(int width, int heigh, Appearance app, Canvas3D pc, BoundingSphere pbounds, BranchGroup pbg, TransformGroup ptrans,ArrayList <Shape3D> gShapes,ArrayList<String> list) {
+        this(null, width, heigh, app,pc,pbounds, ptrans,gShapes, list);
         
     }
 
-    public ObjectsArray(ArrayList<Shape3D> Shapes, int width, int heigh, Appearance app, Canvas3D pc, BoundingSphere pbounds, TransformGroup ptrans) {
+    public ObjectsArray(ArrayList<Shape3D> Shapes, int width, int heigh, Appearance app, Canvas3D pc, BoundingSphere pbounds, TransformGroup ptrans,ArrayList <Shape3D> gShapes,ArrayList<String> list) {
         this.Shapes = Shapes;
         this.width = width;
+        this.list = list;
         this.heigh = heigh;
         this.app = app;
         this.Shapes = new ArrayList<>();
@@ -93,16 +96,47 @@ public class ObjectsArray {
 		material.setShininess( 0.0f );
 		app.setMaterial( material );
 	    }
+        if (this.list.size() == 0){
         for (int i= 0; i< this.width;i++){
             x= -2.5;
             
             for (int j=0; j<this.heigh; j++){
-                Area area = new Area(this.app,x,y,z,"Tree", pc, pbounds, ptrans);
+                Area area = new Area(this.app,x,y,z,"Tree", pc, pbounds, ptrans, gShapes);
+                
                 this.Shapes.add(area);
+                gShapes.add(area);
                 x= x+5;
             }
             z = z+5;
 
+        }
+        }
+        else{
+            for (String str: list){
+                String[] arr = str.split(", ");
+                System.out.print(str);
+                Matrix4d mtr = new Matrix4d( 
+                Double.parseDouble(arr[0]),
+                Double.parseDouble(arr[1]),
+                Double.parseDouble(arr[2]),
+                Double.parseDouble(arr[3]),
+                Double.parseDouble(arr[4]),
+                Double.parseDouble(arr[5]),
+                Double.parseDouble(arr[6]),
+                Double.parseDouble(arr[7]),
+                Double.parseDouble(arr[8]),
+                Double.parseDouble(arr[9]),
+                Double.parseDouble(arr[10]),
+                Double.parseDouble(arr[11]),
+                Double.parseDouble(arr[12]),
+                Double.parseDouble(arr[13]),
+                Double.parseDouble(arr[14]),
+                Double.parseDouble(arr[15]));
+                Transform3D t3d = new Transform3D(mtr);
+                Area area = new Area(this.app,t3d,arr[16], pc, pbounds, ptrans, gShapes);
+                this.Shapes.add(area);
+                gShapes.add(area);
+            }
         }
                        
     }

@@ -16,9 +16,11 @@ import java.util.logging.Logger;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.PickShape;
 import javax.media.j3d.SceneGraphPath;
+import javax.media.j3d.Shape3D;
 import javax.media.j3d.TransformGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.vecmath.Matrix4d;
 
 /**
  *
@@ -32,6 +34,8 @@ public class App extends javax.swing.JFrame {
     JInternalWorld iWorld;
     BranchGroup current_bg;
     TransformGroup current_g;
+    ArrayList <Shape3D> Shapes;
+    ArrayList<String> list; 
 
     public App() {
 
@@ -41,7 +45,9 @@ public class App extends javax.swing.JFrame {
         setSize(1366, 768);
         setLocationRelativeTo(null);
         initComponents();
-        iWorld = new JInternalWorld(true, true, true);
+        this.Shapes = new ArrayList <Shape3D>();
+        list = new ArrayList<String>();
+        iWorld = new JInternalWorld(true, true, true, Shapes, list);
         iWorld.setSize(DestopPn.getSize());
         iWorld.setLocation(0, 0);
         iWorld.setResizable(true);
@@ -61,12 +67,6 @@ public class App extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         DestopPn = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -86,62 +86,21 @@ public class App extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("jButton3");
-
-        jButton4.setText("jButton4");
-
-        jButton5.setText("jButton5");
-
-        jButton6.setText("jButton6");
-
-        jButton7.setText("jButton7");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(105, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(290, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -221,7 +180,7 @@ public class App extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         // we create an internal world to be added within the JDesktop.
-        iWorld = new JInternalWorld(true, true, true);
+        iWorld = new JInternalWorld(true, true, true, this.Shapes, list);
         iWorld.setSize(DestopPn.getSize());
         iWorld.setLocation(0, 0);
         iWorld.setResizable(true);
@@ -230,33 +189,22 @@ public class App extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        PickShape ps = null;
-        // TODO add your handling code here:
-        SceneGraphPath pickClosest = this.iWorld.getScene().pickClosest(ps);
-        System.out.println(pickClosest.toString());
-
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         addmenu addmn = new addmenu(this, true);
         addmn.setVisible(true);
         if (!addmn.getAction().equals("none")) {
-//            Area area = new Area(this.iWorld.getA(), addmn.getXX(), 1, addmn.getYY(), addmn.getAction());
-//            PickHighlightBehavior pickBeh = new PickHighlightBehavior(this.iWorld.getCanvas(), area.getBg(), area.t3d,
-//                    area.getTrans(), this.iWorld.getBoundsj3d(), this.iWorld.getObjTrans());
-//            this.iWorld.getObjTrans().addChild(area.getBg());
+            Area area = new Area(this.iWorld.getA(), addmn.getXX(), 0.1,
+                    addmn.getYY(), addmn.getAction(),this.iWorld.getCanvas(),
+                    this.iWorld.getBoundsj3d(),this.iWorld.getObjTrans(),this.Shapes);
+                            
+            this.iWorld.getObjTrans().addChild(area.getBg());
         }
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        System.out.print(this.current_g.toString());
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        list = new ArrayList<String>();
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
@@ -265,24 +213,51 @@ public class App extends javax.swing.JFrame {
                 Scanner s = new Scanner(selectedFile);
 
                 //Get Building Array
-                ArrayList<String> list = new ArrayList<String>();
+                
                 while (s.hasNext()) {
-                    list.add(s.next());
+                    String str= s.nextLine();
+                    System.out.println(str);
+                    list.add(str);
                 }
                 s.close();
             } catch (IOException ex) {
                 Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+        
+        this.Shapes = new ArrayList <Shape3D>();
+        iWorld.setVisible(false);
+        iWorld = new JInternalWorld(true, true, true, Shapes, list);
+        iWorld.setSize(DestopPn.getSize());
+        iWorld.setLocation(0, 0);
+        iWorld.setResizable(true);
+        DestopPn.add(iWorld);
+        iWorld.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
+        
+        
+        
         this.dispose();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        
+        
+        
+        ArrayList<String> listw = new ArrayList<String>();
+        for (Shape3D shape : this.Shapes){
+            Matrix4d matr = null;
+           // ((Area)shape).getT3d().get(matr);
+            String infor =    ((Area)shape).getT3d().toString().replaceAll("\n", ", ") +
+                    ((Area)shape).housename;
+            listw.add(infor);
+        }
+        
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showSaveDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
@@ -291,14 +266,48 @@ public class App extends javax.swing.JFrame {
                 PrintWriter pw = new PrintWriter(new FileOutputStream(selectedFile));
                 
                 //Array Building Here----------------- Trung
-//                for (Club club : clubs) {
-//                    pw.println(club.getName());
-//                }
+                for (String club : listw) {
+                    pw.println(club);
+                }
                 pw.close();
             } catch (IOException ex) {
                 Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+        
+//        JFileChooser fileChooser = new JFileChooser();
+//        int returnValue = fileChooser.showSaveDialog(null);
+//         if (returnValue == JFileChooser.APPROVE_OPTION) {
+//                File selectedFile = fileChooser.getSelectedFile();
+//                try {
+//                    Scanner s = new Scanner(selectedFile);
+//                    
+//                    //Get Building Array
+//                    ArrayList<String> list = new ArrayList<String>();
+//                    while (s.hasNext()) {
+//                        list.add(s.next());
+//                    }
+//                    s.close();
+//                } catch (IOException ex) {
+//                    Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+
+//        JFileChooser fileChooser = new JFileChooser();
+//        int returnValue = fileChooser.showSaveDialog(null);
+//        if (returnValue == JFileChooser.APPROVE_OPTION) {
+//            File selectedFile = fileChooser.getSelectedFile();
+//            try {
+//                PrintWriter pw = new PrintWriter(new FileOutputStream(selectedFile));
+//                
+//                //Array Building Here----------------- Trung
+//               
+//                pw.close();
+//            } catch (IOException ex) {
+//                Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
@@ -328,6 +337,14 @@ public class App extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         //</editor-fold>
         //</editor-fold>
@@ -344,7 +361,7 @@ public class App extends javax.swing.JFrame {
 
         JInternalWorld iWorld;
         // we create an internal world to be added within the JDesktop.
-        iWorld = new JInternalWorld(true, true, true); //Problem create new Sphere Group with sizeable ground
+        iWorld = new JInternalWorld(true, true, true, this.Shapes, list); //Problem create new Sphere Group with sizeable ground
         iWorld.setSize(DestopPn.getSize());
         iWorld.setLocation(0, 0);
         iWorld.setResizable(true);
@@ -357,12 +374,6 @@ public class App extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DestopPn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

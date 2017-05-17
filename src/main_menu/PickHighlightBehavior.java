@@ -48,6 +48,7 @@ import javax.media.j3d.*;
 import com.sun.j3d.utils.picking.PickTool;
 import com.sun.j3d.utils.picking.PickResult;
 import com.sun.j3d.utils.picking.behaviors.PickMouseBehavior;
+import java.util.ArrayList;
 import javax.vecmath.*;
 
 public class PickHighlightBehavior extends PickMouseBehavior {
@@ -61,12 +62,16 @@ public class PickHighlightBehavior extends PickMouseBehavior {
     private Canvas3D c;    
     private Bounds b;
     private final Transform3D t3d;
+    ArrayList<Shape3D> Shapes;
+    Area a;
 
   public PickHighlightBehavior(Canvas3D canvas, BranchGroup root, Transform3D t3d, TransformGroup trans,          
-			       Bounds bounds, TransformGroup parrent) {
+			       Bounds bounds, TransformGroup parrent,ArrayList<Shape3D> Shapes, Area a) {
       super(canvas, root, bounds);
       this.parrent = parrent;
       this.t3d = t3d;
+      this.Shapes = Shapes;
+      this.a = a;
       this.c = canvas;
       this.b = bounds;
       this.trans = trans;
@@ -107,6 +112,7 @@ public class PickHighlightBehavior extends PickMouseBehavior {
                 menu.setVisible(true);
         if (menu.getAction().endsWith("remove")){
             this.parrent.removeChild(root);
+            this.Shapes.remove(a);
         }
         if (menu.getAction().equals("Rotate")){
         Transform3D step = new Transform3D();
@@ -114,6 +120,7 @@ public class PickHighlightBehavior extends PickMouseBehavior {
         step.rotY(Math.PI/2);
         this.t3d.mul(step);
         this.trans.setTransform(t3d);
+        this.a.direc= ++this.a.direc%4;
         }
         if (menu.getAction().equals("Left")){
         Transform3D step = new Transform3D();
@@ -142,8 +149,10 @@ public class PickHighlightBehavior extends PickMouseBehavior {
         if (menu.getAction().equals("Replace")){
       
         this.parrent.removeChild(root);
-        Area area = new Area (null, this.t3d, menu.getNewh(),this.c, (BoundingSphere) this.b, this.parrent ); 
+        this.Shapes.remove(a);
+        Area area = new Area (null, this.t3d, menu.getNewh(),this.c, (BoundingSphere) this.b, this.parrent,this.Shapes ); 
         this.parrent.addChild(area.getBg());
+        this.Shapes.add(area);
         
         }
           //  this.parrent.removeChild(root);

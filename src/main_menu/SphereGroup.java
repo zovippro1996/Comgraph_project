@@ -88,8 +88,8 @@ public class SphereGroup
 	    {
 		app = new Appearance( );
 		Material material = new Material( );
-		material.setDiffuseColor( new Color3f( 0.0f, 0.7f, 0.1f ) );
-		material.setSpecularColor( new Color3f( 0.0f, 0.7f, 0.1f ) );
+		material.setDiffuseColor( new Color3f( 0.0f, 0.2f, 0.1f ) );
+		material.setSpecularColor( new Color3f( 0.0f, 0.2f, 0.1f ) );
 		material.setShininess( 0.3f );
 		app.setMaterial( material );
 	    }

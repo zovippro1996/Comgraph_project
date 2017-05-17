@@ -52,6 +52,7 @@ import com.sun.j3d.utils.universe.SimpleUniverse;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import javax.media.j3d.AmbientLight;
 import javax.media.j3d.Appearance;
 import javax.media.j3d.Background;
@@ -83,6 +84,8 @@ public class JInternalWorld extends JInternalFrame {
     private BranchGroup scene;
     private Canvas3D canvas ;
     private BoundingSphere bounds;
+    ArrayList <Shape3D> Shapes;
+    ArrayList<String> list;
 
     /**
      *
@@ -144,13 +147,14 @@ public class JInternalWorld extends JInternalFrame {
      * @param isDelayed tells the rotator to start at a random alpha.
      * @param isRandom
      */
-    public JInternalWorld(boolean isInteractive, boolean isDelayed, boolean isRandom) {
+    public JInternalWorld(boolean isInteractive, boolean isDelayed, boolean isRandom, ArrayList <Shape3D> Shapes, ArrayList<String> list) {
         super();
         setSize(600, 600);
         setClosable(true);
 
         canvas = new Canvas3D(SimpleUniverse.getPreferredConfiguration());
-        
+        this.Shapes = Shapes;
+        this.list = list;
         comp = canvas;
 
         Dimension dim = new Dimension(512, 512);
@@ -226,7 +230,7 @@ public class JInternalWorld extends JInternalFrame {
         Background bgNode = new Background(bgColor);
         bgNode.setApplicationBounds(bounds);
         
-                ObjectsArray oa = new ObjectsArray(5,5, a, c ,bounds, objRoot,objTrans);
+                ObjectsArray oa = new ObjectsArray(5,5, a, c ,bounds, objRoot,objTrans, this.Shapes, this.list);
 
         oa.Apply(objTrans,c,bounds);
         

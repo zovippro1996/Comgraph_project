@@ -13,6 +13,7 @@ import com.sun.j3d.loaders.objectfile.ObjectFile;
 import com.sun.j3d.utils.geometry.GeometryInfo;
 import com.sun.j3d.utils.geometry.NormalGenerator;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import javax.media.j3d.Appearance;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.Geometry;
@@ -30,10 +31,28 @@ import javax.vecmath.Vector3d;
 public class Area extends Shape3D{
 
     	Vector3d vec = new Vector3d();
-	Transform3D t3d = new Transform3D( );
+	private Transform3D t3d ;
         private TransformGroup trans ;
         private BranchGroup bg;
         private Canvas3D p_c;
+        int direc = 0;
+        String housename;
+
+    public Vector3d getVec() {
+        return vec;
+    }
+
+    public void setVec(Vector3d vec) {
+        this.vec = vec;
+    }
+
+    public Transform3D getT3d() {
+        return t3d;
+    }
+
+    public void setT3d(Transform3D t3d) {
+        this.t3d = t3d;
+    }
         private BoundingSphere p_b;
         private TransformGroup p_trans;
     
@@ -45,12 +64,13 @@ public class Area extends Shape3D{
     public void setTrans(TransformGroup trans) {
         this.trans = trans;
     }
-    Area(Appearance app, Transform3D t3d, String housename, Canvas3D pc, BoundingSphere pbounds, TransformGroup ptrans){
+    Area(Appearance app, Transform3D t3d, String housename, Canvas3D pc, BoundingSphere pbounds, TransformGroup ptrans,ArrayList<Shape3D> Shapes){
          super(null,app);
          this.bg = new BranchGroup();
          this.p_c = pc;
         this.p_b = pbounds;
         this.p_trans = ptrans;
+        this.housename =housename;
         int flags = ObjectFile.RESIZE;
 	flags |= ObjectFile.TRIANGULATE;
         flags |= ObjectFile.STRIPIFY;   
@@ -104,27 +124,23 @@ public class Area extends Shape3D{
         BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 10.0, 0.0),
         0.0);
         bounds.setRadius(0.02);
-        if (housename != "RootA"){
-        CollisionDetectorGroup cdGroup = new CollisionDetectorGroup(this.trans, this.t3d, this.trans);
-        cdGroup.setSchedulingBounds(bounds);
-        this.trans.addChild(cdGroup);
-        this.trans.setBounds(bounds);
-        this.bg.setBounds(bounds);
-    }
+        
            
         PickHighlightBehavior pickBeh = new 
-            PickHighlightBehavior(this.p_c, this.bg,this.t3d,this.trans, this.p_b, this.p_trans);
+            PickHighlightBehavior(this.p_c, this.bg,this.t3d,this.trans, this.p_b, this.p_trans, Shapes, this);
             this.bg.addChild(pickBeh);
     }
     
     
-    Area(Appearance app,double x, double y, double z, String housename, Canvas3D pc, BoundingSphere pbounds, TransformGroup ptrans) {
+    Area(Appearance app,double x, double y, double z, String housename, Canvas3D pc, BoundingSphere pbounds, TransformGroup ptrans,ArrayList<Shape3D> Shapes) {
         super(null,app);
         this.p_c = pc;
         this.p_b = pbounds;
         this.p_trans = ptrans;
         this.setGeometry(createGeometry());
         this.bg = new BranchGroup();
+                this.housename =housename;
+
         int flags = ObjectFile.RESIZE;
 	flags |= ObjectFile.TRIANGULATE;
         flags |= ObjectFile.STRIPIFY;   
@@ -141,6 +157,7 @@ public class Area extends Shape3D{
 	}
         
         vec.set( x, y, z );
+        t3d = new Transform3D( );
         t3d.setTranslation( vec );
        
         t3d.setScale(1.5);
@@ -179,17 +196,10 @@ public class Area extends Shape3D{
         BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 10.0, 0.0),
         0.0);
         bounds.setRadius(0.02);
-        if (housename != "RootA"){
-        CollisionDetectorGroup cdGroup = new CollisionDetectorGroup(this.trans, t3d, this.trans);
-        cdGroup.setSchedulingBounds(bounds);
-        this.trans.addChild(cdGroup);
-        this.trans.setBounds(bounds);
-        this.bg.setBounds(bounds);
-        }
-        
+       
         
         PickHighlightBehavior pickBeh = new 
-            PickHighlightBehavior(this.p_c, this.bg,this.t3d,this.trans, this.p_b, this.p_trans);
+            PickHighlightBehavior(this.p_c, this.bg,this.t3d,this.trans, this.p_b, this.p_trans,Shapes, this);
             this.bg.addChild(pickBeh);
        
        
