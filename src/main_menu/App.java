@@ -9,6 +9,7 @@ import javax.media.j3d.BranchGroup;
 import javax.media.j3d.PickShape;
 import javax.media.j3d.SceneGraphPath;
 import javax.media.j3d.TransformGroup;
+import javax.swing.JFrame;
 
 /**
  *
@@ -22,12 +23,22 @@ public class App extends javax.swing.JFrame {
     JInternalWorld iWorld;
     BranchGroup current_bg;
     TransformGroup current_g;
-            
-            
+
     public App() {
+
         
+        //make sure the program exits when the frame closes
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("Untitled Project");
+        setSize(1366, 768);
+        setLocationRelativeTo(null);
         initComponents();
-        
+        iWorld = new JInternalWorld(true, true, true);
+        iWorld.setSize(DestopPn.getSize());
+        iWorld.setLocation(0, 0);
+        iWorld.setResizable(true);
+        DestopPn.add(iWorld);
+        iWorld.setVisible(true);
     }
 
     /**
@@ -181,17 +192,15 @@ public class App extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        
-                
+
         // we create an internal world to be added within the JDesktop.
-        
-       iWorld = new JInternalWorld( true,true,true );
+        iWorld = new JInternalWorld(true, true, true);
         iWorld.setSize(DestopPn.getSize());
-        iWorld.setLocation( 0, 0 );
-        iWorld.setResizable( true );
-        DestopPn.add( iWorld );
+        iWorld.setLocation(0, 0);
+        iWorld.setResizable(true);
+        DestopPn.add(iWorld);
         iWorld.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -199,24 +208,22 @@ public class App extends javax.swing.JFrame {
         // TODO add your handling code here:
         SceneGraphPath pickClosest = this.iWorld.getScene().pickClosest(ps);
         System.out.println(pickClosest.toString());
-      
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        addmenu addmn = new addmenu(this,true);
+
+        addmenu addmn = new addmenu(this, true);
         addmn.setVisible(true);
-        if (!addmn.getAction().equals("none")){        
-        Area area = new Area (this.iWorld.getA(),addmn.getXX(),1,addmn.getYY(),addmn.getAction());        
-        PickHighlightBehavior pickBeh = new 
-            PickHighlightBehavior(this.iWorld.getCanvas(), area.getBg(), area.t3d,
+        if (!addmn.getAction().equals("none")) {
+            Area area = new Area(this.iWorld.getA(), addmn.getXX(), 1, addmn.getYY(), addmn.getAction());
+            PickHighlightBehavior pickBeh = new PickHighlightBehavior(this.iWorld.getCanvas(), area.getBg(), area.t3d,
                     area.getTrans(), this.iWorld.getBoundsj3d(), this.iWorld.getObjTrans());
-        this.iWorld.getObjTrans().addChild(area.getBg());
+            this.iWorld.getObjTrans().addChild(area.getBg());
         }
-        
-       
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -251,7 +258,7 @@ public class App extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
 
@@ -260,21 +267,21 @@ public class App extends javax.swing.JFrame {
             new App().setVisible(true);
         });
     }
-    
+
     //Trung's set Constructor
-    public void auto_open_JInternalWorld(int width, int height) {                                           
+    public void auto_open_JInternalWorld(int width, int height) {
         // TODO add your handling code here:
-        
-                JInternalWorld iWorld;
+
+        JInternalWorld iWorld;
         // we create an internal world to be added within the JDesktop.
-        iWorld = new JInternalWorld( true,true,true ); //Problem create new Sphere Group with sizeable ground
+        iWorld = new JInternalWorld(true, true, true); //Problem create new Sphere Group with sizeable ground
         iWorld.setSize(DestopPn.getSize());
-        iWorld.setLocation( 0, 0 );
-        iWorld.setResizable( true );
-       
-        DestopPn.add( iWorld );
+        iWorld.setLocation(0, 0);
+        iWorld.setResizable(true);
+
+        DestopPn.add(iWorld);
         iWorld.setVisible(true);
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

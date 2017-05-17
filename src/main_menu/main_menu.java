@@ -19,7 +19,13 @@ import java.awt.FlowLayout;
 import javax.media.j3d.*;
 import javax.vecmath.*;
 import java.awt.GraphicsConfiguration;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class main_menu extends JFrame implements ActionListener {
 
@@ -98,15 +104,29 @@ public class main_menu extends JFrame implements ActionListener {
         String action = e.getActionCommand();
         //Action for Create Button
         if (action.equals("Create")) {
-            
+
             App app_1 = new App();
             app_1.setVisible(true);
-                  
+
+            this.dispose();
 
         } //Action for Load Button
         else if (action.equals("Load")) {
-            Load_project_dialog load_project1 = new Load_project_dialog(this,true);
-            load_project1.setVisible(true);
+            JFileChooser fileChooser = new JFileChooser();
+            int returnValue = fileChooser.showOpenDialog(null);
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = fileChooser.getSelectedFile();
+                try {
+                    Scanner s = new Scanner(selectedFile);
+                    ArrayList<String> list = new ArrayList<String>();
+                    while (s.hasNext()) {
+                        list.add(s.next());
+                    }
+                    s.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
 
         } //Action for Credits Button
         else if (action.equals("Credits")) {
