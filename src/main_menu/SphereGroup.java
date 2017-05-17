@@ -103,7 +103,7 @@ public class SphereGroup
         
 	double xStart = -xSpacing * (double)(xCount-1) / 2.0;
 	double yStart = -ySpacing * (double)(yCount-1) / 2.0;
-	double x, z = yStart, y = 0.0;
+	double x, z = yStart, y = 0.8;
 	shapes = new Shape3D[xCount * yCount];
 	for ( int i = 0; i < yCount; i++ )
 	    {
@@ -140,10 +140,10 @@ public class SphereGroup
  int idx = 0;
  for (int i = 0; i < m; i++) {
  for (int j = 0; j < n; j++) {
- float x = (i - m/2)*0.02f;
- float z = (j - n/2)*0.02f;
- float y = 0.1f * (float)(Math.cos(x) * Math.sin(z))/
- ((float)Math.exp(0.25*(x*x+z*z)))-1.0f;
+ float x = (i - m/2)*0.2f;
+ float z = (j - n/2)*0.2f;
+ float y = 0.4f * (float)(Math.cos(x) * Math.sin(z))/
+ ((float)Math.exp(0.5*(x*x+z*z)))-1.0f;
  pts[idx++] = new Point3f(x, y, z);
  }
  }

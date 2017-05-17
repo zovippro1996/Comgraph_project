@@ -48,7 +48,6 @@ import javax.media.j3d.*;
 import com.sun.j3d.utils.picking.PickTool;
 import com.sun.j3d.utils.picking.PickResult;
 import com.sun.j3d.utils.picking.behaviors.PickMouseBehavior;
-import java.awt.event.MouseEvent;
 import javax.vecmath.*;
 
 public class PickHighlightBehavior extends PickMouseBehavior {
@@ -56,16 +55,23 @@ public class PickHighlightBehavior extends PickMouseBehavior {
   Shape3D oldShape = null;
   Appearance highlightAppearance;
   private objectmenu menu;
+  private TransformGroup trans;
   private final BranchGroup root;
     private final TransformGroup parrent;
 
-  public PickHighlightBehavior(Canvas3D canvas, BranchGroup root,
+    
+    private final Transform3D t3d;
+
+  public PickHighlightBehavior(Canvas3D canvas, BranchGroup root, Transform3D t3d, TransformGroup trans,          
 			       Bounds bounds, TransformGroup parrent) {
       super(canvas, root, bounds);
       this.parrent = parrent;
+      this.t3d = t3d;
+      this.trans = trans;
       this.root = root;
       this.setSchedulingBounds(bounds);
       this.root.addChild(this);
+    
       Color3f white = new Color3f(1.0f, 1.0f, 1.0f);
       Color3f black = new Color3f(0.0f, 0.0f, 0.0f);
       Color3f highlightColor = new Color3f(0.0f, 1.0f, 0.0f);
@@ -96,11 +102,45 @@ public class PickHighlightBehavior extends PickMouseBehavior {
           //  shape = (Shape3D) pickResult.getNode(PickResult.SHAPE3D);
             menu = new objectmenu(null, true);
             menu.setLocation(100,100);
-            if (mevent.isShiftDown())
+            if (1==1)
                 menu.setVisible(true);
         if (menu.getAction().endsWith("remove")){
             this.parrent.removeChild(root);
         }
+        if (menu.getAction().equals("Rotate")){
+        Transform3D step = new Transform3D();
+        step.set(new Vector3d(0,0,0));
+        step.rotY(Math.PI/2);
+        this.t3d.mul(step);
+        this.trans.setTransform(t3d);
+        }
+        if (menu.getAction().equals("Left")){
+        Transform3D step = new Transform3D();
+        step.set(new Vector3d(1,0,0));        
+        this.t3d.mul(step);
+        this.trans.setTransform(t3d);
+        }
+        if (menu.getAction().equals("Right")){
+        Transform3D step = new Transform3D();
+        step.set(new Vector3d(-1,0,0));        
+        this.t3d.mul(step);
+        this.trans.setTransform(t3d);
+        }
+        if (menu.getAction().equals("Up")){
+        Transform3D step = new Transform3D();
+        step.set(new Vector3d(0,0,1));        
+        this.t3d.mul(step);
+        this.trans.setTransform(t3d);
+        }
+        if (menu.getAction().equals("Down")){
+        Transform3D step = new Transform3D();
+        step.set(new Vector3d(0,0,-1));        
+        this.t3d.mul(step);
+        this.trans.setTransform(t3d);
+        }
+        System.out.print(t3d.toString());
+       
+       
 	}
 
 	if (oldShape != null){

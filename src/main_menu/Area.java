@@ -28,7 +28,7 @@ import javax.vecmath.Vector3d;
  */
 public class Area extends Shape3D{
 
-    	Vector3d vec = new Vector3d( );
+    	Vector3d vec = new Vector3d();
 	Transform3D t3d = new Transform3D( );
         private TransformGroup trans ;
         private BranchGroup bg;
@@ -72,7 +72,7 @@ public class Area extends Shape3D{
         vec.set( x, y, z );
         t3d.setTranslation( vec );
        
-        t3d.setScale(1);
+        t3d.setScale(1.5);
         //t3d.setRotation(new AxisAngle4f(1.0f, 1.0f, 10.0f, 1f));
         trans = new TransformGroup( t3d );
         trans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
@@ -93,8 +93,8 @@ public class Area extends Shape3D{
 
         //this.trans.addChild(cube);
         this.bg.setCollidable(true);
-        this.bg.setCapability(BranchGroup.ALLOW_CHILDREN_READ);
-        this.bg.setCapability(BranchGroup.ALLOW_CHILDREN_WRITE);
+      //  this.bg.setCapability(BranchGroup.ALLOW_CHILDREN_READ);
+    //    this.bg.setCapability(BranchGroup.ALLOW_CHILDREN_WRITE);
         this.bg.setCapability(BranchGroup.ALLOW_CHILDREN_EXTEND);
         this.bg.setCapability(BranchGroup.ALLOW_DETACH);
         this.bg.setName("hello tu");

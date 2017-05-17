@@ -5,8 +5,10 @@
  */
 package main_menu;
 
+import javax.media.j3d.BranchGroup;
 import javax.media.j3d.PickShape;
 import javax.media.j3d.SceneGraphPath;
+import javax.media.j3d.TransformGroup;
 
 /**
  *
@@ -18,6 +20,10 @@ public class App extends javax.swing.JFrame {
      * Creates new form App
      */
     JInternalWorld iWorld;
+    BranchGroup current_bg;
+    TransformGroup current_g;
+            
+            
     public App() {
         
         initComponents();
@@ -61,6 +67,11 @@ public class App extends javax.swing.JFrame {
         });
 
         jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("jButton3");
 
@@ -158,11 +169,11 @@ public class App extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
 
         pack();
@@ -196,21 +207,22 @@ public class App extends javax.swing.JFrame {
         
         addmenu addmn = new addmenu(this,true);
         addmn.setVisible(true);
-        
-        
-        
-        Area area = new Area (this.iWorld.getA(),addmn.getXX(),1,addmn.getYY(),addmn.getAction());
-        
-        
-        
+        if (!addmn.getAction().equals("none")){        
+        Area area = new Area (this.iWorld.getA(),addmn.getXX(),1,addmn.getYY(),addmn.getAction());        
         PickHighlightBehavior pickBeh = new 
-            PickHighlightBehavior(this.iWorld.getCanvas(), area.getBg(), this.iWorld.getBoundsj3d(), this.iWorld.getObjTrans());
+            PickHighlightBehavior(this.iWorld.getCanvas(), area.getBg(), area.t3d,
+                    area.getTrans(), this.iWorld.getBoundsj3d(), this.iWorld.getObjTrans());
         this.iWorld.getObjTrans().addChild(area.getBg());
-        
+        }
         
        
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        System.out.print(this.current_g.toString());
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -81,7 +81,7 @@ public class ObjectsArray {
         this.Shapes = new ArrayList<>();
         
         
-	double x=0.5 , z = -2.8, y = -0.3;
+	double x=0.5 , z = -2.8, y = 0.0;
         
         if ( app == null )
 	    {
@@ -122,9 +122,9 @@ public class ObjectsArray {
             
             
             
-            PickHighlightBehavior pickBeh = new 
-            PickHighlightBehavior(c, ((Area)shape).getBg(), b, bg);
-            
+//            PickHighlightBehavior pickBeh = new 
+//            PickHighlightBehavior(c, ((Area)shape).getBg(),((Area)shape).t3d,((Area)shape).getTrans(), b, bg);
+//            
            // PickTranslateBehavior translate = new PickTranslateBehavior(((Area)shape).getBg(), c, b);
             //((Area)shape).getBg().addChild(translate);
            // PickZoomBehavior zoom = new PickZoomBehavior(((Area)shape).getBg(), c, b);
