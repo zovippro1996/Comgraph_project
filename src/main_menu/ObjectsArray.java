@@ -112,16 +112,10 @@ public class ObjectsArray {
         }
 
         for (Shape3D shape : this.Shapes){
-            
-     
-
-            
-            bg.addChild(((Area)shape).getBg());
+           bg.addChild(((Area)shape).getBg());
             BoundingSphere bounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0),
         1000.0);
-
-        
-            
+      
             PickHighlightBehavior pickBeh = new 
             PickHighlightBehavior(c, ((Area)shape).getBg(),((Area)shape).t3d,((Area)shape).getTrans(), b, bg);
             ((Area)shape).getBg().addChild(pickBeh);
