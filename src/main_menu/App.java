@@ -291,9 +291,9 @@ public class App extends javax.swing.JFrame {
                 PrintWriter pw = new PrintWriter(new FileOutputStream(selectedFile));
                 
                 //Array Building Here----------------- Trung
-                for (Club club : clubs) {
-                    pw.println(club.getName());
-                }
+//                for (Club club : clubs) {
+//                    pw.println(club.getName());
+//                }
                 pw.close();
             } catch (IOException ex) {
                 Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
