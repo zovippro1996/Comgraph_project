@@ -14,8 +14,6 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.media.j3d.BranchGroup;
-import javax.media.j3d.PickShape;
-import javax.media.j3d.SceneGraphPath;
 import javax.media.j3d.Shape3D;
 import javax.media.j3d.TransformGroup;
 import javax.swing.JFileChooser;
