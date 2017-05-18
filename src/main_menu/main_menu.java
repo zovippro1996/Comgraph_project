@@ -113,8 +113,10 @@ public class main_menu extends JFrame implements ActionListener {
                     //Get Building Array
                     ArrayList<String> list = new ArrayList<String>();
                     while (s.hasNext()) {
-                        list.add(s.next());
+                        list.add(s.nextLine());
                     }
+                    App new_app = new App(list);
+                    new_app.setVisible(true);
                     s.close();
                 } catch (IOException ex) {
                     Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);

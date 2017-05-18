@@ -67,10 +67,10 @@
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="jButton3" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButton4" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="jButton5" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="jButton7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton7" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton6" min="-2" pref="47" max="-2" attributes="0"/>
@@ -154,11 +154,13 @@
     <Component class="javax.swing.JComboBox" name="jComboBox1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="6">
             <StringItem index="0" value="House1"/>
             <StringItem index="1" value="House2"/>
             <StringItem index="2" value="FrameHouse"/>
             <StringItem index="3" value="Tree"/>
+            <StringItem index="4" value="Building1"/>
+            <StringItem index="5" value="Building2"/>
           </StringArray>
         </Property>
       </Properties>

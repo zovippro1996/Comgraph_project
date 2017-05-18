@@ -88,7 +88,18 @@ public class Area extends Shape3D{
         
         this.t3d = t3d;
        
-        this.t3d.setScale(1.5);
+        if (this.housename.startsWith("Building")){
+            Transform3D step = new Transform3D();
+        step.set(new Vector3d(0,2,0));        
+        this.t3d.mul(step);
+        this.t3d.setScale(3.5);
+        
+        
+            
+        }
+        else{
+            this.t3d.setScale(1.5);
+        }
         //t3d.setRotation(new AxisAngle4f(1.0f, 1.0f, 10.0f, 1f));
         trans = new TransformGroup( this.t3d );
         trans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
@@ -156,12 +167,21 @@ public class Area extends Shape3D{
 	  System.exit(1);
 	}
         
-        vec.set( x, y, z );
-        t3d = new Transform3D( );
+        t3d = new Transform3D( );      
+if (this.housename.startsWith("Building")){
+            this.t3d.setScale(3.5);
+            y = 2.6;
+        }
+        else{
+            this.t3d.setScale(1.5);
+            
+        }     
+    vec.set( x, y, z );
         t3d.setTranslation( vec );
-       
-        t3d.setScale(1.5);
-        //t3d.setRotation(new AxisAngle4f(1.0f, 1.0f, 10.0f, 1f));
+
+
+
+//t3d.setRotation(new AxisAngle4f(1.0f, 1.0f, 10.0f, 1f));
         trans = new TransformGroup( t3d );
         trans.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
         trans.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);

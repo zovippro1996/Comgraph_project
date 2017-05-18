@@ -97,19 +97,19 @@ public class ObjectsArray {
 		app.setMaterial( material );
 	    }
         if (this.list.size() == 0){
-        for (int i= 0; i< this.width;i++){
-            x= -2.5;
-            
-            for (int j=0; j<this.heigh; j++){
-                Area area = new Area(this.app,x,y,z,"Tree", pc, pbounds, ptrans, gShapes);
-                
-                this.Shapes.add(area);
-                gShapes.add(area);
-                x= x+5;
-            }
-            z = z+5;
-
-        }
+//        for (int i= 0; i< this.width;i++){
+//            x= -2.5;
+//            
+//            for (int j=0; j<this.heigh; j++){
+//                Area area = new Area(this.app,x,y,z,"Tree", pc, pbounds, ptrans, gShapes);
+//                
+//                this.Shapes.add(area);
+//                gShapes.add(area);
+//                x= x+5;
+//            }
+//            z = z+5;
+//
+//        }
         }
         else{
             for (String str: list){

@@ -117,32 +117,32 @@ public class PickHighlightBehavior extends PickMouseBehavior {
         if (menu.getAction().equals("Rotate")){
         Transform3D step = new Transform3D();
         step.set(new Vector3d(0,0,0));
-        step.rotY(Math.PI/2);
+        step.rotY(Math.PI/4);
         this.t3d.mul(step);
         this.trans.setTransform(t3d);
         this.a.direc= ++this.a.direc%4;
         }
         if (menu.getAction().equals("Left")){
         Transform3D step = new Transform3D();
-        step.set(new Vector3d(1,0,0));        
+        step.set(new Vector3d(0.3,0,0));        
         this.t3d.mul(step);
         this.trans.setTransform(t3d);
         }
         if (menu.getAction().equals("Right")){
         Transform3D step = new Transform3D();
-        step.set(new Vector3d(-1,0,0));        
+        step.set(new Vector3d(-0.3,0,0));        
         this.t3d.mul(step);
         this.trans.setTransform(t3d);
         }
         if (menu.getAction().equals("Up")){
         Transform3D step = new Transform3D();
-        step.set(new Vector3d(0,0,1));        
+        step.set(new Vector3d(0,0,0.3));        
         this.t3d.mul(step);
         this.trans.setTransform(t3d);
         }
         if (menu.getAction().equals("Down")){
         Transform3D step = new Transform3D();
-        step.set(new Vector3d(0,0,-1));        
+        step.set(new Vector3d(0,0,-0.3));        
         this.t3d.mul(step);
         this.trans.setTransform(t3d);
         }

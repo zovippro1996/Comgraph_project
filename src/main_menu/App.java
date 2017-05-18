@@ -37,6 +37,23 @@ public class App extends javax.swing.JFrame {
     ArrayList <Shape3D> Shapes;
     ArrayList<String> list; 
 
+    public App(ArrayList<String> list){
+        this.list= list;
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("Untitled Project");
+        setSize(1366, 768);
+        setLocationRelativeTo(null);
+        initComponents();
+        this.Shapes = new ArrayList <Shape3D>();
+        iWorld = new JInternalWorld(true, true, true, Shapes, list);
+        iWorld.setSize(DestopPn.getSize());
+        iWorld.setLocation(0, 0);
+        iWorld.setResizable(true);
+        DestopPn.add(iWorld);
+        iWorld.setVisible(true);
+        
+    }
+    
     public App() {
 
         //make sure the program exits when the frame closes
@@ -74,8 +91,6 @@ public class App extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,17 +105,17 @@ public class App extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(105, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(290, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(25, 25, 25))
+                .addGap(23, 23, 23))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -153,12 +168,6 @@ public class App extends javax.swing.JFrame {
         jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("View");
-        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -375,8 +384,6 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JPanel DestopPn;
     private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
