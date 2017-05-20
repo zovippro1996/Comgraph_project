@@ -59,9 +59,11 @@ public class App extends javax.swing.JFrame {
         //make sure the program exits when the frame closes
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Untitled Project");
+        
+        
+        initComponents();
         setSize(1366, 768);
         setLocationRelativeTo(null);
-        initComponents();
         this.Shapes = new ArrayList <Shape3D>();
         list = new ArrayList<String>();
         iWorld = new JInternalWorld(true, true, true, Shapes, list);
@@ -81,6 +83,7 @@ public class App extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem5 = new javax.swing.JMenuItem();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -91,10 +94,15 @@ public class App extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        help_menu_item = new javax.swing.JMenuItem();
+        about_menu_item = new javax.swing.JMenuItem();
+
+        jMenuItem5.setText("jMenuItem5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Add Construction ");
+        jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -107,8 +115,8 @@ public class App extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,11 +132,11 @@ public class App extends javax.swing.JFrame {
         DestopPn.setLayout(DestopPnLayout);
         DestopPnLayout.setHorizontalGroup(
             DestopPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 583, Short.MAX_VALUE)
+            .addGap(0, 1282, Short.MAX_VALUE)
         );
         DestopPnLayout.setVerticalGroup(
             DestopPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 338, Short.MAX_VALUE)
+            .addGap(0, 753, Short.MAX_VALUE)
         );
 
         jSplitPane1.setRightComponent(DestopPn);
@@ -169,6 +177,26 @@ public class App extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setText("Document");
+
+        help_menu_item.setText("Help");
+        help_menu_item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                help_menu_itemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(help_menu_item);
+
+        about_menu_item.setText("About us");
+        about_menu_item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                about_menu_itemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(about_menu_item);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -187,7 +215,6 @@ public class App extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-
         // we create an internal world to be added within the JDesktop.
         iWorld = new JInternalWorld(true, true, true, this.Shapes, list);
         iWorld.setSize(DestopPn.getSize());
@@ -195,7 +222,6 @@ public class App extends javax.swing.JFrame {
         iWorld.setResizable(true);
         DestopPn.add(iWorld);
         iWorld.setVisible(true);
-
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -209,8 +235,6 @@ public class App extends javax.swing.JFrame {
             this.iWorld.getObjTrans().addChild(area.getBg());
             this.Shapes.add(area);
         }
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -235,7 +259,6 @@ public class App extends javax.swing.JFrame {
             }
         }
         
-        
         this.Shapes = new ArrayList <Shape3D>();
         iWorld.setVisible(false);
         iWorld = new JInternalWorld(true, true, true, Shapes, list);
@@ -248,10 +271,7 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
+        // TODO add your handling code here:  
         this.dispose();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -284,41 +304,16 @@ public class App extends javax.swing.JFrame {
                 Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        
-//        JFileChooser fileChooser = new JFileChooser();
-//        int returnValue = fileChooser.showSaveDialog(null);
-//         if (returnValue == JFileChooser.APPROVE_OPTION) {
-//                File selectedFile = fileChooser.getSelectedFile();
-//                try {
-//                    Scanner s = new Scanner(selectedFile);
-//                    
-//                    //Get Building Array
-//                    ArrayList<String> list = new ArrayList<String>();
-//                    while (s.hasNext()) {
-//                        list.add(s.next());
-//                    }
-//                    s.close();
-//                } catch (IOException ex) {
-//                    Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
 
-//        JFileChooser fileChooser = new JFileChooser();
-//        int returnValue = fileChooser.showSaveDialog(null);
-//        if (returnValue == JFileChooser.APPROVE_OPTION) {
-//            File selectedFile = fileChooser.getSelectedFile();
-//            try {
-//                PrintWriter pw = new PrintWriter(new FileOutputStream(selectedFile));
-//                
-//                //Array Building Here----------------- Trung
-//               
-//                pw.close();
-//            } catch (IOException ex) {
-//                Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void help_menu_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_help_menu_itemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_help_menu_itemActionPerformed
+
+    private void about_menu_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_menu_itemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_about_menu_itemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -383,13 +378,17 @@ public class App extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DestopPn;
+    private javax.swing.JMenuItem about_menu_item;
+    private javax.swing.JMenuItem help_menu_item;
     private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables

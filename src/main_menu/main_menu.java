@@ -98,7 +98,7 @@ public class main_menu extends JFrame implements ActionListener {
 
             App app_1 = new App();
             app_1.setVisible(true);
-
+            app_1.setResizable(false);
             this.dispose();
 
         } //Action for Load Button
@@ -116,8 +116,11 @@ public class main_menu extends JFrame implements ActionListener {
                         list.add(s.nextLine());
                     }
                     String file_name = selectedFile.getName();
+
+                    //Calling app at Tu
                     App new_app = new App(list, file_name);
                     new_app.setVisible(true);
+                    new_app.setResizable(false);
                     s.close();
                 } catch (IOException ex) {
                     Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
