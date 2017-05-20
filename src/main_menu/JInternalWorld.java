@@ -203,9 +203,9 @@ public class JInternalWorld extends JInternalFrame {
 
         
         Transform3D t3dTrans = new Transform3D();
-        t3dTrans.setScale(0.5);
-        t3dTrans.setTranslation(new Vector3d(1, 0, -5));
-        t3dTrans.setRotation(new AxisAngle4f(10.0f, 1.0f, 1.0f, 1f));
+        t3dTrans.setScale(0.3);
+        t3dTrans.setTranslation(new Vector3d(0, 0, 0));
+        t3dTrans.setRotation(new AxisAngle4f(10.0f, 40.0f, 10.0f, 1.0f));
         objTrans.setTransform(t3dTrans);
         objRoot.addChild(objTrans);
         

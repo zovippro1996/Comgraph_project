@@ -35,10 +35,11 @@ public class App extends javax.swing.JFrame {
     ArrayList <Shape3D> Shapes;
     ArrayList<String> list; 
 
-    public App(ArrayList<String> list){
+    //Constructor for Trung's Load Function
+    public App(ArrayList<String> list, String file_name){
         this.list= list;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Untitled Project");
+        setTitle(file_name);
         setSize(1366, 768);
         setLocationRelativeTo(null);
         initComponents();
@@ -48,10 +49,11 @@ public class App extends javax.swing.JFrame {
         iWorld.setLocation(0, 0);
         iWorld.setResizable(true);
         DestopPn.add(iWorld);
-        iWorld.setVisible(true);
-        
+        iWorld.setVisible(true);    
     }
     
+    
+    //Default Constructor for new Project
     public App() {
 
         //make sure the program exits when the frame closes
@@ -219,7 +221,7 @@ public class App extends javax.swing.JFrame {
             File selectedFile = fileChooser.getSelectedFile();
             try {
                 Scanner s = new Scanner(selectedFile);
-
+                setTitle(selectedFile.getName());
                 //Get Building Array
                 
                 while (s.hasNext()) {

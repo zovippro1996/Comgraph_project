@@ -115,7 +115,8 @@ public class main_menu extends JFrame implements ActionListener {
                     while (s.hasNext()) {
                         list.add(s.nextLine());
                     }
-                    App new_app = new App(list);
+                    String file_name = selectedFile.getName();
+                    App new_app = new App(list, file_name);
                     new_app.setVisible(true);
                     s.close();
                 } catch (IOException ex) {
