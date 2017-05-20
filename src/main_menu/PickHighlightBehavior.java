@@ -104,6 +104,7 @@ public class PickHighlightBehavior extends PickMouseBehavior {
 
 	pickResult = pickCanvas.pickClosest();
         
+        //Shift Adjustment
 	if (pickResult != null) {
           //  shape = (Shape3D) pickResult.getNode(PickResult.SHAPE3D);
             menu = new objectmenu(null, true);

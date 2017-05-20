@@ -25,7 +25,7 @@ public class main_menu extends JFrame implements ActionListener {
     //Attribute as 4 Button
     JButton create_button = new JButton("Create Project");
     JButton load_button = new JButton("Load Project");
-    JButton credits_button = new JButton("Credits");
+    JButton credits_button = new JButton("About the Authors");
     JButton exit_button = new JButton("Exit");
 
     public static void main(String[] args) {
@@ -56,22 +56,22 @@ public class main_menu extends JFrame implements ActionListener {
         //Add Create Project Button to the Main Menu
         create_button.addActionListener(this);
         create_button.setActionCommand("Create");
-        create_button.setBounds(583, 200, 200, 50);
+        create_button.setBounds(583, 220, 200, 50);
 
         //Add Load Button to the Main Mennu
         load_button.addActionListener(this);
         load_button.setActionCommand("Load");
-        load_button.setBounds(583, 300, 200, 50);
+        load_button.setBounds(583, 320, 200, 50);
 
         //Add Credit Button to the Main Menu
         credits_button.addActionListener(this);
         credits_button.setActionCommand("Credits");
-        credits_button.setBounds(583, 400, 200, 50);
+        credits_button.setBounds(583, 420, 200, 50);
 
         //Initialize Exit Button
         exit_button.addActionListener(this);
         exit_button.setActionCommand("Exit");
-        exit_button.setBounds(583, 500, 200, 50);
+        exit_button.setBounds(583, 520, 200, 50);
 
         //Add 4 initialize Button to the Panel
         pnlButton.add(create_button);

@@ -205,6 +205,7 @@ public class App extends javax.swing.JFrame {
                     this.iWorld.getBoundsj3d(),this.iWorld.getObjTrans(),this.Shapes);
                             
             this.iWorld.getObjTrans().addChild(area.getBg());
+            this.Shapes.add(area);
         }
 
 
