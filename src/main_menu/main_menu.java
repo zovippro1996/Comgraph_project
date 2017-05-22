@@ -26,7 +26,9 @@ public class main_menu extends JFrame implements ActionListener {
     JButton create_button = new JButton("Create Project");
     JButton load_button = new JButton("Load Project");
     JButton credits_button = new JButton("About the Authors");
-    JButton exit_button = new JButton("Exit");
+    JButton exit_button = new JButton("Exit");  
+    URL url = getClass().getClassLoader().getResource("main_menu/resources/images/main-menu-bg.jpg");    
+    JLabel background = new JLabel(new ImageIcon(url));
 
     public static void main(String[] args) {
 
@@ -48,9 +50,7 @@ public class main_menu extends JFrame implements ActionListener {
         //Get allign Button
         pnlButton.setLayout(null);
 
-        //URL of background image
-        URL url = getClass().getClassLoader().getResource("main_menu/resources/images/main-menu-bg.jpg");
-        JLabel background = new JLabel(new ImageIcon(url));
+       
         background.setBounds(0, 0, 1366, 768);
 
         //Add Create Project Button to the Main Menu

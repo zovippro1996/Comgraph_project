@@ -4,19 +4,20 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/objectmenu.java</file>
+            <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/DefautArea.java</file>
             <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/Area.java</file>
+            <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/CollisionDetectorGroup.java</file>
             <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/credits.java</file>
             <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/ObjectsArray.java</file>
+            <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/CollisionDetector.java</file>
             <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/JInternalWorld.java</file>
+            <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/Box.java</file>
             <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/main_menu.java</file>
             <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/Resources.java</file>
             <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/MouseRotateY.java</file>
-            <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/first_j3d.java</file>
             <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/App.java</file>
             <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/SphereGroup.java</file>
             <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/PickHighlightBehavior.java</file>
-            <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/main.java</file>
-            <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/House1.java</file>
             <file>file:/home/zovippro1996/NetBeansProjects/Comgraph_project/src/main_menu/addmenu.java</file>
         </group>
     </open-files>
