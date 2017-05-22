@@ -21,10 +21,6 @@ import javax.media.j3d.TransformGroup;
 import javax.vecmath.Point3f;
 import javax.vecmath.Vector3d;
 
-/**
- *
- * @author levan
- */
 public class DefautArea extends Shape3D {
 
     Vector3d vec = new Vector3d();
