@@ -227,13 +227,35 @@ public class App extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         addmenu addmn = new addmenu(this, true);
         addmn.setVisible(true);
+        boolean caninput= true;
         if (!addmn.getAction().equals("none")) {
+            
+            for (Shape3D area: Shapes){
+                if (((Area)area).vec.x == addmn.getXX() && ((Area)area).vec.y == addmn.getYY()){
+                    caninput = false;
+                }
+            }
+            
+            
             Area area = new Area(this.iWorld.getA(), addmn.getXX(), 0.1,
                     addmn.getYY(), addmn.getAction(),this.iWorld.getCanvas(),
                     this.iWorld.getBoundsj3d(),this.iWorld.getObjTrans(),this.Shapes);
-                            
+                   
+            
+             for (Shape3D are: Shapes){
+                if (((Area)are).getT3d().toString().equals(area.getT3d().toString())){
+                    caninput = false;
+                }
+            }
+            
+            if (caninput){
             this.iWorld.getObjTrans().addChild(area.getBg());
             this.Shapes.add(area);
+            }
+            else{
+                Error error = new Error(this, true);
+                error.setVisible(true);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
