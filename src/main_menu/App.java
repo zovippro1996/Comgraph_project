@@ -5,10 +5,12 @@
  */
 package main_menu;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -32,39 +34,37 @@ public class App extends javax.swing.JFrame {
     JInternalWorld iWorld;
     BranchGroup current_bg;
     TransformGroup current_g;
-    ArrayList <Shape3D> Shapes;
-    ArrayList<String> list; 
+    ArrayList<Shape3D> Shapes;
+    ArrayList<String> list;
 
     //Constructor for Trung's Load Function
-    public App(ArrayList<String> list, String file_name){
-        this.list= list;
+    public App(ArrayList<String> list, String file_name) {
+        this.list = list;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle(file_name);
         setSize(1366, 768);
         setLocationRelativeTo(null);
         initComponents();
-        this.Shapes = new ArrayList <Shape3D>();
+        this.Shapes = new ArrayList<Shape3D>();
         iWorld = new JInternalWorld(true, true, true, Shapes, list);
         iWorld.setSize(DestopPn.getSize());
         iWorld.setLocation(0, 0);
         iWorld.setResizable(true);
         DestopPn.add(iWorld);
-        iWorld.setVisible(true);    
+        iWorld.setVisible(true);
     }
-    
-    
+
     //Default Constructor for new Project
     public App() {
 
         //make sure the program exits when the frame closes
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Untitled Project");
-        
-        
+
         initComponents();
         setSize(1366, 768);
         setLocationRelativeTo(null);
-        this.Shapes = new ArrayList <Shape3D>();
+        this.Shapes = new ArrayList<Shape3D>();
         list = new ArrayList<String>();
         iWorld = new JInternalWorld(true, true, true, Shapes, list);
         iWorld.setSize(DestopPn.getSize());
@@ -227,32 +227,29 @@ public class App extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         addmenu addmn = new addmenu(this, true);
         addmn.setVisible(true);
-        boolean caninput= true;
+        boolean caninput = true;
         if (!addmn.getAction().equals("none")) {
-            
-            for (Shape3D area: Shapes){
-                if (((Area)area).vec.x == addmn.getXX() && ((Area)area).vec.y == addmn.getYY()){
+
+            for (Shape3D area : Shapes) {
+                if (((Area) area).vec.x == addmn.getXX() && ((Area) area).vec.y == addmn.getYY()) {
                     caninput = false;
                 }
             }
-            
-            
+
             Area area = new Area(this.iWorld.getA(), addmn.getXX(), 0.1,
-                    addmn.getYY(), addmn.getAction(),this.iWorld.getCanvas(),
-                    this.iWorld.getBoundsj3d(),this.iWorld.getObjTrans(),this.Shapes);
-                   
-            
-             for (Shape3D are: Shapes){
-                if (((Area)are).getT3d().toString().equals(area.getT3d().toString())){
+                    addmn.getYY(), addmn.getAction(), this.iWorld.getCanvas(),
+                    this.iWorld.getBoundsj3d(), this.iWorld.getObjTrans(), this.Shapes);
+
+            for (Shape3D are : Shapes) {
+                if (((Area) are).getT3d().toString().equals(area.getT3d().toString())) {
                     caninput = false;
                 }
             }
-            
-            if (caninput){
-            this.iWorld.getObjTrans().addChild(area.getBg());
-            this.Shapes.add(area);
-            }
-            else{
+
+            if (caninput) {
+                this.iWorld.getObjTrans().addChild(area.getBg());
+                this.Shapes.add(area);
+            } else {
                 Error error = new Error(this, true);
                 error.setVisible(true);
             }
@@ -269,9 +266,9 @@ public class App extends javax.swing.JFrame {
                 Scanner s = new Scanner(selectedFile);
                 setTitle(selectedFile.getName());
                 //Get Building Array
-                
+
                 while (s.hasNext()) {
-                    String str= s.nextLine();
+                    String str = s.nextLine();
                     System.out.println(str);
                     list.add(str);
                 }
@@ -280,8 +277,8 @@ public class App extends javax.swing.JFrame {
                 Logger.getLogger(main_menu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        this.Shapes = new ArrayList <Shape3D>();
+
+        this.Shapes = new ArrayList<Shape3D>();
         iWorld.setVisible(false);
         iWorld = new JInternalWorld(true, true, true, Shapes, list);
         iWorld.setSize(DestopPn.getSize());
@@ -298,25 +295,23 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        
-        
-         
+
         ArrayList<String> listw = new ArrayList<String>();
-        for (Shape3D shape : this.Shapes){
+        for (Shape3D shape : this.Shapes) {
             Matrix4d matr = null;
-           // ((Area)shape).getT3d().get(matr);
-            String infor =    ((Area)shape).getT3d().toString().replaceAll("\n", ", ") +
-                    ((Area)shape).housename;
+            // ((Area)shape).getT3d().get(matr);
+            String infor = ((Area) shape).getT3d().toString().replaceAll("\n", ", ")
+                    + ((Area) shape).housename;
             listw.add(infor);
         }
-        
+
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showSaveDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             try {
                 PrintWriter pw = new PrintWriter(new FileOutputStream(selectedFile));
-                
+
                 //Array Building Here----------------- Trung
                 for (String club : listw) {
                     pw.println(club);
@@ -331,6 +326,14 @@ public class App extends javax.swing.JFrame {
 
     private void help_menu_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_help_menu_itemActionPerformed
         // TODO add your handling code here:
+        URL url = getClass().getClassLoader().getResource("main_menu/resources/report/UserGuideforCitySim.pdf");
+        File file = new File(url.getPath());
+
+        try {
+            Desktop.getDesktop().open(file);
+        } catch (IOException ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_help_menu_itemActionPerformed
 
     private void about_menu_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_menu_itemActionPerformed
