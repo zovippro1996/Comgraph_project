@@ -58,6 +58,7 @@ public class objectmenu extends javax.swing.JDialog {
         jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Remote Control");
 
         jButton1.setText("Remove");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

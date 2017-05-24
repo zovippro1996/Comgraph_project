@@ -61,6 +61,7 @@ public class addmenu extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add Construction");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "House1", "House2", "FrameHouse", "Tree", "Building1", "Building2" }));
 
