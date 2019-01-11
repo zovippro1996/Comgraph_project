@@ -1,1 +1,1 @@
-# comgraph_project
+# Computer Graphics Project
